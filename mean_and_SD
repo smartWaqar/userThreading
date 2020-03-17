@@ -1,0 +1,1 @@
+awk '{sum+=$4; sumsq+=($4)^2;c++}END{print "%f %f \n", sum/c, sqrt(sumsq-sum^2/c)/c}'

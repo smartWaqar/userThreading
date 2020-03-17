@@ -1,0 +1,10 @@
+Execution time is 484 clock cycles
+Execution time is 472 clock cycles
+Execution time is 429 clock cycles
+Execution time is 467 clock cycles
+Execution time is 456 clock cycles
+Execution time is 458 clock cycles
+Execution time is 454 clock cycles
+Execution time is 419 clock cycles
+Execution time is 429 clock cycles
+Execution time is 407 clock cycles

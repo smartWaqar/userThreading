@@ -11,9 +11,12 @@
 //#include <unistd.h>
 //#include <assert.h>
 
-#include "ufiber17.h"
+#define _GNU_SOURCE
+#include <sched.h>
 
-using namespace std;
+#include "ufiber18.h"
+
+//using namespace std;
 
 
 pthread_barrier_t barrier;
@@ -21,80 +24,10 @@ long long globalVariable = 0;
 UserThreading UserThreadingVec[2];
 int threadCount;
 bool OSThreadAvailable[2];
-thread_local int threadId;
+//thread_local int threadId;
+static _Thread_local int threadId;
 
 UserThreading userTh;
-
-void fa(){
-
-    for (int i=0; i < 100; i++){
-        globalVariable++;
-        printf("Hello A%d \n",i);
-        userTh.Yield(false);
-    }
-    userTh.ThreadExit();
-}
-
-void fb(){
-
-    for (int i=0; i < 100; i++){
-        globalVariable++;
-        printf("Hello B%d \n",i);
-        userTh.Yield(false);
-    }
-    userTh.ThreadExit();
-}
-
-void fc(){
-
-    for (int i=0; i < 30; i++){
-        globalVariable++;
-        printf("Hello C%d \n",i);
-        userTh.Yield(false);
-    }
-    userTh.ThreadExit();
-}
-
-
-
-
-void pfa(){
-
-    int parentId = threadId;
-    printf("parentId: %d \n", parentId);
-
-    for (int i=0; i < 100; i++){
-        globalVariable++;
-        printf("OST %d Hello A%d on CPU %d \n",parentId , i, sched_getcpu());
-        UserThreadingVec[parentId].Yield(false);
-    }
-    UserThreadingVec[parentId].ThreadExit();
-}
-
-void pfb(){
-
-    int parentId = threadId;
-    printf("parentId: %d \n", parentId);
-
-    for (int i=0; i < 100; i++){
-        //globalVariable++;
-        printf("OST %d Hello B%d on CPU %d\n", parentId, i, sched_getcpu());
-        UserThreadingVec[parentId].Yield(false);
-    }
-    UserThreadingVec[parentId].ThreadExit();
-}
-
-
-//volatile Thread *threadptr;
-
-
-
-void changeOSThread4(){
-
-	UserThreadingVec[threadId].ThreadExit();
-
-}
-
 
 
 
@@ -118,24 +51,26 @@ void pfc(){
 
     // Special code
 
-    UserThreadingVec[0].foriegn_thread_ptr = &UserThreadingVec[1].current_thread;
-    UserThreadingVec[1].foriegn_thread_ptr = &UserThreadingVec[0].current_thread;
+    UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
+    UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
 
     //
 
     for (int i=0; i < 10000000; i++){
-        //globalVariable++;
+        globalVariable++;
         //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
         
-        changeOSThread4();
+        //changeOSThread4();
         //UserThreadingVec[threadId].ThreadExit();
+      ThreadExit(&UserThreadingVec[threadId]);
     }
     printf("C Exiting\n");
     
     allSchedulersExit();
     
     UserThreadingVec[threadId].sp_exit_check = true;
-    UserThreadingVec[threadId].ThreadExit();
+    //UserThreadingVec[threadId].ThreadExit();
+    ThreadExit(&UserThreadingVec[threadId]);
 }
 
 
@@ -150,7 +85,8 @@ void *mpthread1(void *arg){
 
     pthread_barrier_wait(&barrier);
 
-    UserThreadingVec[threadId].Scheduler();
+    //UserThreadingVec[threadId].Scheduler();
+    Scheduler(&UserThreadingVec[threadId]);
     OSThreadAvailable[threadId] = false;
 
 
@@ -169,7 +105,8 @@ void *mpthread2(void *arg){
 
     pthread_barrier_wait(&barrier);
 
-    UserThreadingVec[threadId].Scheduler();
+    //UserThreadingVec[threadId].Scheduler();
+    Scheduler(&UserThreadingVec[threadId]);
     OSThreadAvailable[threadId] = false;
 
     //printf("globalVariable: %lld\n",globalVariable);  
@@ -191,19 +128,17 @@ int main(){
   UserThreading userTh_0;
   UserThreading userTh_1;
 
-  //userTh_0.makeThread(pfa);
-  //userTh_0.makeThread(pfb);
-  userTh_0.makeThread(pfc);
+  
 
-
-  //userTh_1.makeThread(pfa);
-  //userTh_1.makeThread(pfb);
 
   UserThreadingVec[0] = userTh_0;
   UserThreadingVec[1] = userTh_1;
 
-  //UserThreadingVec.push_back(userTh_0);
-  //UserThreadingVec.push_back(userTh_1);
+  UserThreading_Init(&UserThreadingVec[0]);
+  UserThreading_Init(&UserThreadingVec[1]);
+
+  makeThread(&UserThreadingVec[0], pfc);
+
 
   pthread_t threadId_1, threadId_2, threadId_3;
 

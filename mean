@@ -1,0 +1,2 @@
+awk '{sum+=$4;c++}END{print sum/c}'
+

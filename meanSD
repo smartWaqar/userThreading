@@ -1,0 +1,1 @@
+awk '{sum+=$4; sumsq+=$4*$4} END {print "Mean:" sum/NR "  SD: " sqrt(sumsq/NR - (sum/NR)^2)}'
