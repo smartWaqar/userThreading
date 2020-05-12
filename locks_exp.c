@@ -32,17 +32,17 @@ void *thread1(void *arg){
 		pthread_spin_unlock(&spinlock);
 
 		//special instruction: 
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
       
-        asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
+       //  asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
 
 	}
 
@@ -64,17 +64,17 @@ void *thread2(void *arg){
 		pthread_spin_unlock(&spinlock);
 
 		//special instruction: 
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
+       //  asm volatile("rep nop");
       
-        asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
+       //  asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
+      	// asm volatile("rep nop");
 
 	}
 
@@ -173,18 +173,18 @@ int main(){
 	"mov %%eax, %1\n\t": "=r" (cycles_high), "=r" (cycles_low));
 
 
-	pthread_create(&threadId_1, NULL, thread3, (void *)(intptr_t) 0);
+	pthread_create(&threadId_1, NULL, thread1, (void *)(intptr_t) 0);
 
 	cpu_set_t cpuset;
   	CPU_ZERO(&cpuset);
   	CPU_SET(0, &cpuset);
   	pthread_setaffinity_np(threadId_1, sizeof(cpu_set_t), &cpuset);
 
-	pthread_create(&threadId_2, NULL, thread4, (void *)(intptr_t) 1);
+	pthread_create(&threadId_2, NULL, thread2, (void *)(intptr_t) 1);
 
 	cpu_set_t cpuset2;
   	CPU_ZERO(&cpuset2);
-  	CPU_SET(16, &cpuset2);
+  	CPU_SET(64, &cpuset2);
   	pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
 
   	pthread_join(threadId_1, NULL); 

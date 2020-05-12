@@ -1,26 +1,7 @@
-// #include <iostream>
-// #include <atomic>
-// #include <cinttypes>
-// #include <cstdio>
-//#include <cstdlib>
-//#include <cstring>
-//#include <algorithm>
-//#include <chrono>
-//#include <pthread.h>
-//#include <stdio.h>
-//#include <unistd.h>
-//#include <assert.h>
-
 #define _GNU_SOURCE             
 #include <sched.h>
 
-// Program 18 Experiment
-
-#include "ufiber18.h"
-
-//using namespace std;
-
-// awk language for processing log files
+#include "ufiber20.h"
 
 
 pthread_barrier_t barrier;
@@ -43,6 +24,7 @@ void allSchedulersExit(){
 
   for (int i=0; i < 2; i++){
     if (i != threadId )
+      //UserThreadingVec[threadId].current_thread = NULL;
       UserThreadingVec[i].sp_exit_check = true;
   	  //UserThreadingVec[i].current_thread = NULL;
 
@@ -63,8 +45,10 @@ void pfc(){
 
     // Special code
 
-    UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
-    UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
+    //UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
+    //UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
+
+    UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
 
     //
 
@@ -90,9 +74,6 @@ void pfc(){
         //   global_var2++;
 
 
-
-
-
         //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
         
         //changeOSThread4();
@@ -105,11 +86,18 @@ void pfc(){
     // printf("local_var1: %lld\n",local_var1); 
     // printf("local_var2: %lld\n",local_var2); 
     
-    allSchedulersExit();
-    
+    //allSchedulersExit();
+    UserThreadingVec[(threadId + 1) % 2].current_thread->context.mxcsr = -2;
+    UserThreadingVec[(threadId + 1) % 2].sp_exit_check = true;
+
+
+    UserThreadingVec[threadId].current_thread->context.mxcsr = -2;
     UserThreadingVec[threadId].sp_exit_check = true;
-    //UserThreadingVec[threadId].ThreadExit();
+
+    //printf("I am done %d\n", threadId);
+
     ThreadExit(&UserThreadingVec[threadId]);
+    //printf("*****\n");
 }
 
 
@@ -126,10 +114,13 @@ void *mpthread1(void *arg){
 
     //UserThreadingVec[threadId].Scheduler();
     Scheduler(&UserThreadingVec[threadId]);
+    //printf("Point 1\n");
     OSThreadAvailable[threadId] = false;
 
 
     //printf("globalVariable: %lld\n",globalVariable);  
+
+    //UserThreading_Destory(&UserThreadingVec[threadId]);
 
 }
 
@@ -146,20 +137,18 @@ void *mpthread2(void *arg){
 
     //UserThreadingVec[threadId].Scheduler();
     Scheduler(&UserThreadingVec[threadId]);
+    //printf("Point 2\n");
     OSThreadAvailable[threadId] = false;
 
     //printf("globalVariable: %lld\n",globalVariable);  
+
+    //UserThreading_Destory(&UserThreadingVec[threadId]);
 
 }
 
 
 
 int main(){
-
-  
-  //int numberOfProcessors = sysconf(_SC_NPROCESSORS_ONLN);
-  //printf("Number of processors: %d\n", numberOfProcessors);
-
 
 
   pthread_barrier_init (&barrier, NULL, 2);
@@ -169,14 +158,11 @@ int main(){
   UserThreading userTh_0;
   UserThreading userTh_1;
 
-  
-
-
   UserThreadingVec[0] = userTh_0;
   UserThreadingVec[1] = userTh_1;
 
-  UserThreading_Init(&UserThreadingVec[0]);
-  UserThreading_Init(&UserThreadingVec[1]);
+  UserThreading_Init(&UserThreadingVec[0], 0);
+  UserThreading_Init(&UserThreadingVec[1], 1);
 
   makeThread(&UserThreadingVec[0], pfc);
 
@@ -190,10 +176,6 @@ int main(){
 "RDTSC\n\t"
 "mov %%edx, %0\n\t"
 "mov %%eax, %1\n\t": "=r" (cycles_high), "=r" (cycles_low));
-
-
-
-  //auto start = chrono::high_resolution_clock::now();
 
   
   OSThreadAvailable[0] = false;
@@ -211,28 +193,23 @@ int main(){
 
   cpu_set_t cpuset2;
   CPU_ZERO(&cpuset2);
-  CPU_SET(8, &cpuset2);
+  CPU_SET(28, &cpuset2);
   pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
 
   pthread_join(threadId_1, NULL); 
   pthread_join(threadId_2, NULL);
 
 
-  //auto stop = chrono::high_resolution_clock::now();
-
   asm volatile (
 "RDTSC\n\t"
 "mov %%edx, %0\n\t"
 "mov %%eax, %1\n\t": "=r" (cycles_high1), "=r" (cycles_low1));
 
-  //auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-  //printf("globalVariable: %lld \n", globalVariable); 
-  //printf("User Threading Duration: %lu \n", duration.count()); 
 
-start_t = ( ((uint64_t)cycles_high << 32) | cycles_low );
-end = ( ((uint64_t)cycles_high1 << 32) | cycles_low1 );
-//printf("Execution time is %lu clock cycles\n", (end - start_t));
-printf("Execution time is %lu clock cycles\n", (end - start_t) / (10000000) );
+  start_t = ( ((uint64_t)cycles_high << 32) | cycles_low );
+  end = ( ((uint64_t)cycles_high1 << 32) | cycles_low1 );
+  //printf("Execution time is %lu clock cycles\n", (end - start_t));
+  printf("Execution time is %lu clock cycles\n", (end - start_t) / (10000000) );
 
   pthread_barrier_destroy(&barrier);
 

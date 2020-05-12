@@ -16,7 +16,7 @@
 
 // Program 18 Experiment
 
-#include "ufiber18.h"
+#include "ufiber19.h"
 
 //using namespace std;
 
@@ -63,8 +63,10 @@ void pfc(){
 
     // Special code
 
-    UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
-    UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
+    //UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
+    //UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
+
+    UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
 
     //
 
@@ -88,9 +90,6 @@ void pfc(){
         //   global_var1++;
         // else
         //   global_var2++;
-
-
-
 
 
         //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
@@ -131,6 +130,8 @@ void *mpthread1(void *arg){
 
     //printf("globalVariable: %lld\n",globalVariable);  
 
+    //UserThreading_Destory(&UserThreadingVec[threadId]);
+
 }
 
 void *mpthread2(void *arg){
@@ -149,6 +150,8 @@ void *mpthread2(void *arg){
     OSThreadAvailable[threadId] = false;
 
     //printf("globalVariable: %lld\n",globalVariable);  
+
+    //UserThreading_Destory(&UserThreadingVec[threadId]);
 
 }
 
@@ -175,8 +178,8 @@ int main(){
   UserThreadingVec[0] = userTh_0;
   UserThreadingVec[1] = userTh_1;
 
-  UserThreading_Init(&UserThreadingVec[0]);
-  UserThreading_Init(&UserThreadingVec[1]);
+  UserThreading_Init(&UserThreadingVec[0], 0);
+  UserThreading_Init(&UserThreadingVec[1], 1);
 
   makeThread(&UserThreadingVec[0], pfc);
 

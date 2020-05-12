@@ -33,19 +33,21 @@ void *thread1(void *arg){
 
 		reqFlag = 1;
 
-		while (reqFlag == 1);
+		while (reqFlag == 1){
+			//asm volatile("rep nop");
+		};
 
-		asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
+		// asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
       
-        asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
 
 
 	}
@@ -61,23 +63,25 @@ void *thread2(void *arg){
 
 	for (int i=0; i <10000000; i++){
 
-		while(reqFlag == 0);
+		while(reqFlag == 0){
+			//asm volatile("rep nop");
+		}
 
 		globalCounter++;
 
 		reqFlag = 0;
 
-		asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
-        asm volatile("rep nop");
+		// asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //       asm volatile("rep nop");
       
-        asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
-      	asm volatile("rep nop");
+  //       asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
+  //     	asm volatile("rep nop");
 
 	}
 
@@ -203,7 +207,7 @@ int main(){
 
 	cpu_set_t cpuset2;
   	CPU_ZERO(&cpuset2);
-  	CPU_SET(16, &cpuset2);
+  	CPU_SET(28, &cpuset2);
   	pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
 
   	pthread_join(threadId_1, NULL); 
