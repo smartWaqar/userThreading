@@ -1,0 +1,2 @@
+program20: 
+gcc -O3 program20_exp.c ufiber20.c contextSwitch2.s -std=gnu11 -lpthread -g

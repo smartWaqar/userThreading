@@ -80,22 +80,30 @@ void Scheduler(UserThreading *_uth){
             //printf("Burr %d \n", _uth->current_thread->context.mxcsr);
 
               //special instruction: 
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
+
+            #ifdef REP_NOPS 
+
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
             
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
-              // asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+              asm volatile("rep nop");
+
+           #endif
 
         }
-        //else {
-          //asm volatile("rep nop");
-        //}
+        #ifdef REP_NOPS
+        else {
+          asm volatile("rep nop");
+        }
+        #endif
+
 
         // flag no c++ to gcc compiler
 

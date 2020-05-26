@@ -3,6 +3,7 @@
 #include <pthread.h>
 #include <stdint.h>         
 #include <sched.h>
+#include <stdlib.h>
 
 // Lock Experiment (Mutex and Spin lock)
 // Repeat Experiment on HyperThreads and Sockets and 2 Sockets
@@ -34,20 +35,26 @@ void *thread1(void *arg){
 		reqFlag = 1;
 
 		while (reqFlag == 1){
-			//asm volatile("rep nop");
+			#ifdef REP_NOPS
+				asm volatile("rep nop");
+			#endif
 		};
 
-		// asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-      
-  //       asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
+		#ifdef REP_NOPS
+
+			asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	      
+	        asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+
+	    #endif
 
 
 	}
@@ -64,24 +71,30 @@ void *thread2(void *arg){
 	for (int i=0; i <10000000; i++){
 
 		while(reqFlag == 0){
-			//asm volatile("rep nop");
+			#ifdef REP_NOPS
+				asm volatile("rep nop");
+			#endif
 		}
 
 		globalCounter++;
 
 		reqFlag = 0;
 
-		// asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-  //       asm volatile("rep nop");
-      
-  //       asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
-  //     	asm volatile("rep nop");
+		#ifdef REP_NOPS
+
+			asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	      
+	        asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+
+	    #endif
 
 	}
 
@@ -174,7 +187,25 @@ void *thread6(void *arg){
 }
 
 
-int main(){
+int main(int argc, char *argv[]){
+
+	int coreId_1, coreId_2;
+
+	if (argc != 3){
+		printf("Program needs 2 arguments: two core ids \n");
+		exit(1);
+	}
+
+	coreId_1 = atoi(argv[1]);
+	coreId_2 = atoi(argv[2]);
+
+
+	#ifdef REP_NOPS
+		printf("REP_NOPS enabled\n");
+	#else
+		printf("REP_NOPS not enabled\n");
+	#endif
+
 
 	globalCounter = 0;
 	reqFlag = 0;
@@ -200,14 +231,14 @@ int main(){
 
 	cpu_set_t cpuset;
   	CPU_ZERO(&cpuset);
-  	CPU_SET(0, &cpuset);
+  	CPU_SET(coreId_1, &cpuset);
   	pthread_setaffinity_np(threadId_1, sizeof(cpu_set_t), &cpuset);
 
 	pthread_create(&threadId_2, NULL, thread2, (void *)(intptr_t) 1);
 
 	cpu_set_t cpuset2;
   	CPU_ZERO(&cpuset2);
-  	CPU_SET(28, &cpuset2);
+  	CPU_SET(coreId_2, &cpuset2);
   	pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
 
   	pthread_join(threadId_1, NULL); 

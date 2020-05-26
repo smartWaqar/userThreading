@@ -12,7 +12,6 @@ pthread_spinlock_t spinlock;
 pthread_mutex_t mutex;
 
 
-
 //-----------------
 // 1 Spin Locks
 //-----------------
@@ -24,11 +23,19 @@ void *thread1(void *arg){
 
 	printf("Barrier passed\n");
 
+	long long prev = -1;
+	long long specialCounter = 0;
+
 	for (int i = 0; i < 5000000; i++){
 
 		pthread_spin_lock(&spinlock);
 
+		if (globalCounter == prev)
+			specialCounter++;
+
 		globalCounter++;
+
+		prev = globalCounter;
 
 		pthread_spin_unlock(&spinlock);
 
@@ -48,6 +55,8 @@ void *thread1(void *arg){
       	#endif
 
 	}
+
+	printf("specialCounter %lld\n", specialCounter);
 
 }
 
@@ -56,13 +65,21 @@ void *thread2(void *arg){
 	printf("thread2\n");
 	pthread_barrier_wait(&barrier);
 
+	long long prev = -1;
+	long long specialCounter = 0;
+
 	printf("Barrier passed\n");
 
 	for (int i=0; i <5000000; i++){
 
 		pthread_spin_lock(&spinlock);
 
+		if (globalCounter == prev)
+			specialCounter++;
+
 		globalCounter++;
+
+		prev = globalCounter;
 
 		pthread_spin_unlock(&spinlock);
 
@@ -82,6 +99,8 @@ void *thread2(void *arg){
 
       	#endif
 	}
+
+	printf("specialCounter %lld\n", specialCounter);
 
 }
 
@@ -157,6 +176,122 @@ void *thread4(void *arg){
 
 }
 
+//-----------------
+// 3 Ticket Locks
+//-----------------
+
+
+
+typedef struct {
+	int ticket;
+	int turn;
+} lock_t;
+
+void lock_init(lock_t *lock) {
+	lock->ticket = 0;
+	lock->turn = 0;
+}
+
+void acquire(lock_t *lock) {
+	//int myturn = FAA(&lock->ticket);
+	int myturn = __sync_fetch_and_add(&lock->ticket, 1, __ATOMIC_SEQ_CST);
+	while (lock->turn != myturn); // spin
+}
+
+void release(lock_t *lock) {
+	lock->turn += 1;
+}
+
+lock_t myticketLock;
+
+void *thread5(void *arg){
+	
+	printf("thread5\n");
+	pthread_barrier_wait(&barrier);
+
+	printf("Barrier passed\n");
+
+	long long prev = -1;
+	long long specialCounter = 0;
+
+	for (int i = 0; i < 5000000; i++){
+
+		acquire(&myticketLock);
+
+		if (globalCounter == prev)
+			specialCounter++;
+
+		globalCounter++;
+
+		prev = globalCounter;
+
+		release(&myticketLock);
+
+		#ifdef REP_NOPS
+			//special instruction: 
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	      
+	        asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+      	#endif
+
+	}
+
+	printf("specialCounter %lld\n", specialCounter);
+
+}
+
+void *thread6(void *arg){
+	
+	printf("thread6\n");
+	pthread_barrier_wait(&barrier);
+
+	long long prev = -1;
+	long long specialCounter = 0;
+
+	printf("Barrier passed\n");
+
+	for (int i=0; i <5000000; i++){
+
+		acquire(&myticketLock);
+
+		if (globalCounter == prev)
+			specialCounter++;
+
+		globalCounter++;
+
+		prev = globalCounter;
+
+		release(&myticketLock);
+
+		#ifdef REP_NOPS
+			//special instruction: 
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	        asm volatile("rep nop");
+	      
+	        asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+	      	asm volatile("rep nop");
+
+      	#endif
+	}
+
+	printf("specialCounter %lld\n", specialCounter);
+
+}
+
 
 
 int main(int argc, char *argv[]){
@@ -185,6 +320,8 @@ int main(int argc, char *argv[]){
     pthread_mutex_init(&mutex, NULL);
 
 
+    lock_init(&myticketLock);
+
 	pthread_barrier_init (&barrier, NULL, 2);
 
 
@@ -201,14 +338,14 @@ int main(int argc, char *argv[]){
 	"mov %%eax, %1\n\t": "=r" (cycles_high), "=r" (cycles_low));
 
 
-	pthread_create(&threadId_1, NULL, thread1, (void *)(intptr_t) 0);
+	pthread_create(&threadId_1, NULL, thread5, (void *)(intptr_t) 0);
 
 	cpu_set_t cpuset;
   	CPU_ZERO(&cpuset);
   	CPU_SET(coreId_1, &cpuset);
   	pthread_setaffinity_np(threadId_1, sizeof(cpu_set_t), &cpuset);
 
-	pthread_create(&threadId_2, NULL, thread2, (void *)(intptr_t) 1);
+	pthread_create(&threadId_2, NULL, thread6, (void *)(intptr_t) 1);
 
 	cpu_set_t cpuset2;
   	CPU_ZERO(&cpuset2);

@@ -148,7 +148,23 @@ void *mpthread2(void *arg){
 
 
 
-int main(){
+int main(int argc, char *argv[]){
+
+	int coreId_1, coreId_2;
+
+	if (argc != 3){
+		printf("Program needs 2 arguments: two core ids \n");
+		exit(1);
+	}
+
+	coreId_1 = atoi(argv[1]);
+	coreId_2 = atoi(argv[2]);
+
+	#ifdef REP_NOPS
+		printf("REP_NOPS enabled\n");
+	#else
+		printf("REP_NOPS not enabled\n");
+	#endif
 
 
   pthread_barrier_init (&barrier, NULL, 2);
@@ -184,7 +200,7 @@ int main(){
 
   cpu_set_t cpuset;
   CPU_ZERO(&cpuset);
-  CPU_SET(0, &cpuset);
+  CPU_SET(coreId_1, &cpuset);
   pthread_setaffinity_np(threadId_1, sizeof(cpu_set_t), &cpuset);
   
   OSThreadAvailable[1] = false;
@@ -193,7 +209,7 @@ int main(){
 
   cpu_set_t cpuset2;
   CPU_ZERO(&cpuset2);
-  CPU_SET(28, &cpuset2);
+  CPU_SET(coreId_2, &cpuset2);
   pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
 
   pthread_join(threadId_1, NULL); 

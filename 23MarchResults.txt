@@ -570,3 +570,274 @@ params in c
 #Use Makefile (compile time arguments -D, by the use of #ifdef change whethere to use repnops or not)
 
 
+########################################################
+
+
+
+------- Quad 3 Experiment -------
+Without Sleep
+Without Repnops
+
+Fiber
+HT(0, 28) Mean:111.8  SD: 0.4
+SS(0, 1)  Mean:719.5  SD: 19.9261
+DS(0, 14) Mean:1541  SD: 69.0912
+---------------------------------------
+delegation_exp.c
+HT(0, 28) Mean:86.3  SD: 0.781025
+SS(0, 1)  Mean:471  SD: 20.283
+DS(0, 14) Mean:548.1  SD: 12.5096
+----------------------------------------
+locks_exp.c with spinlocks
+HT(0, 28) Mean:24  SD: 0
+SS(0, 1)  Mean:102.2  SD: 4.21426
+DS(0, 14) Mean:281.5  SD: 29.588
+
+######################################
+
+With Repnops
+
+Fiber
+HT(0, 28) Mean:536.8  SD: 1.6
+SS(0, 1)  Mean:698.1  SD: 7.51598
+DS(0, 14) Mean:1146  SD: 53.4359
+---------------------------------------
+delegation_exp.c
+HT(0, 28) Mean:1120.7  SD: 2.49199
+SS(0, 1)  Mean:1465  SD: 37.2586
+DS(0, 14) Mean:1995.6  SD: 107.72
+----------------------------------------
+locks_exp.c with spinlocks
+HT(0, 28) Mean:507.1  SD: 0.830662
+SS(0, 1)  Mean:571.8  SD: 2.44131
+DS(0, 14) Mean:686.5  SD: 26.5603
+
+########################################################
+
+Special Counter for spinlocks re-aquisition
+
+Without Repnops 
+locks_exp2.c with spinlocks
+
+HT(0, 28) 4672794
+SS(0, 1)  4850267
+DS(0, 14) 4475495
+
+With Repnops
+
+HT(0, 28) 2087
+SS(0, 1)  1902
+DS(0, 14) 53953
+
+
+
+
+
+
+
+
+#######################################################
+(Meeting Saturday May 16, For Next Meeting on May 19)
+# ticket locks (I can a)
+# Add to your script a gnu plot which makes a bar chart
+set the file to the bar chart
+#Repeat the experiment on other machine (e.g. nodes)
+
+#####################################################
+Summer goals
+
+Green sleep branch in rust branches link shared by the 
+
+Berrel Fish Operating System EPFL
+######################################################
+
+
+
+------- Nodes Experiment -------
+Without Sleep
+Without Repnops
+
+program20_exp.c 
+
+HT(0, 64) Mean:108.5  SD: 3.23265
+SS(0, 1)  Mean:562.9  SD: 28.6965
+DS(0, 16) Mean:1742.5  SD: 198.638
+---------------------------------------
+delegation_exp.c
+
+HT(0, 64) Mean:87.9  SD: 0.538516
+SS(0, 1)  Mean:448.7  SD: 54.2937
+DS(0, 16) Mean:770.7  SD: 128.322
+----------------------------------------
+locks_exp.c with spinlocks
+
+HT(0, 64) Mean:41.7  SD: 1.48661
+SS(0, 1)  Mean:71.8  SD: 11.4
+DS(0, 16) Mean:78.1  SD: 9.37497
+
+######################################
+With Repnops
+
+program20_exp.c 
+
+HT(0, 64) Mean:89.1  SD: 3.83275
+SS(0, 1)  Mean:542  SD: 37.9895
+DS(0, 16) Mean:1618.1  SD: 155.775
+---------------------------------------
+delegation_exp.c
+
+HT(0, 64) Mean:173.9  SD: 13.5311
+SS(0, 1)  Mean:435.7  SD: 38.6783
+DS(0, 16) Mean:938.3  SD: 140.526
+----------------------------------------
+locks_exp.c with spinlocks
+
+HT(0, 64) Mean:57.1  SD: 0.3
+SS(0, 1)  Mean:191.2  SD: 20.6485
+DS(0, 16) Mean:354.7  SD: 23.4011
+
+
+###############################################
+
+Time with Ticket Locks
+
+------- Nodes Experiment -------
+Without Sleep
+----------------------------------------
+Without repnops
+locks_exp2.c with ticketLocks
+
+HT(0, 64) Mean:66  SD: 4.64758
+SS(0, 1)  Mean:198  SD: 27.6659
+DS(0, 16) Mean:367.1  SD: 43.3208
+----------------------------------------
+With repnops
+locks_exp2.c with ticketLocks
+
+HT(0, 64) Mean:57  SD: 0
+SS(0, 1)  Mean:192.5  SD: 17.8059
+DS(0, 16) Mean:330.1  SD: 39.5056
+
+
+############################################
+
+
+Special Counter for ticketlocks re-aquisition
+
+Without Repnops 
+locks_exp2.c with ticketlocks
+
+HT(0, 64) 150-2000
+SS(0, 1)  300-1000
+DS(0, 16) 90000-1475000
+
+With Repnops
+
+HT(0, 64) 800-2000
+SS(0, 1)  2000-7000
+DS(0, 16) 1568000-3436000
+
+##########################################
+Confirmed TicketLock
+
+------- Nodes Experiment -------
+Without Sleep
+----------------------------------------
+Without repnops
+locks_exp2.c with ticketlocks
+
+
+HT(0, 64) Mean:73.3  SD: 0.458258
+SS(0, 1)  Mean:215.2  SD: 32.4586
+DS(0, 16) Mean:233.3  SD: 82.0074
+----------------------------------------
+With repnops
+locks_exp2.c with ticketlocks
+
+HT(0, 64) Mean:66.1  SD: 4.52659
+SS(0, 1)  Mean:277.3  SD: 35.2308
+DS(0, 16) Mean:333.1  SD: 101.206
+
+
+##########################################
+
+Bar chart ???
+
+HT, SS, 
+
+
+##################################
+
+Nodes will be busy, try quads
+
+# Start using bar chart
+
+#Measure where we are spending time, use perf c2c (not time, cache misses) and with perf record
+-> Investigage for the round trip latency for fibers
+
+# Lookup __rdtsc (compiler intrinsic) for measuring time instead of what I am already doing
+
+# Move thread pinning in the threads
+# Measure time after the entering and leaving the barrier
+
+# Rust repository brach: green_sleep 
+Make a new test case fiber migration (most test cases will be in lib.rs)
+normal delegation with a function calling a function
+wrapping the varialbe in trust
+
+-> End goal: migrate the function to the server and the function keep on running
+
+-> Print migrate -> Check which client -> Check which fiber -> Add that to the run 
+
+
+#################################
+
+
+Nodes will be busy, try quads
+
+# Start using bar chart (Done)
+
+#Measure where we are spending time, use perf c2c (not time, cache misses) and with perf record
+-> Investigage for the round trip latency for fibers (Done)
+
+
+c2c HT Fiber
+17 cpu/mem-loads, ldlat=30/P (Cannot decipher)
+4k cpu/mems-stores/P
+	44 pfc -> 86% mov ecx, 0x38(%rax)
+	42 pfc -> add to global variable
+	13 Context Switch
+
+
+c2c SS Fiber
+23k cpu/mem-loads, ldlat=30/P
+	86 Schedular -> 100% mov ecx, 0x38(%rax)
+	7  contextSwitch
+28k cpu/mems-stores/P
+	53 Schedular -> call to context Switch
+	40 pfc -> Additon to global variable
+
+
+c2c DS Fiber
+55k cpu/mem-loads, ldlat=30/P
+	90 Schedular -> 100% mov ecx, 0x38(%rax)
+	9  contextSwtich
+62k cpu/mems-stores/P
+	49 Scheudlar -> call to context Switch
+	38 pfc -> Additon to global variable
+
+
+
+# Lookup __rdtsc (compiler intrinsic) for measuring time instead of what I am already doing
+
+# Move thread pinning in the threads
+# Measure time after the entering and leaving the barrier
+
+# Rust repository brach: green_sleep 
+Make a new test case fiber migration (most test cases will be in lib.rs)
+normal delegation with a function calling a function
+wrapping the varialbe in trust
+
+-> End goal: migrate the function to the server and the function keep on running
+
+-> Print migrate -> Check which client -> Check which fiber -> Add that to the run 
