@@ -1,0 +1,1133 @@
+
+program20_exp:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000000918 <_init>:
+ 918:	48 83 ec 08          	sub    $0x8,%rsp
+ 91c:	48 8b 05 c5 16 20 00 	mov    0x2016c5(%rip),%rax        # 201fe8 <__gmon_start__>
+ 923:	48 85 c0             	test   %rax,%rax
+ 926:	74 02                	je     92a <_init+0x12>
+ 928:	ff d0                	callq  *%rax
+ 92a:	48 83 c4 08          	add    $0x8,%rsp
+ 92e:	c3                   	retq   
+
+Disassembly of section .plt:
+
+0000000000000930 <.plt>:
+ 930:	ff 35 22 16 20 00    	pushq  0x201622(%rip)        # 201f58 <_GLOBAL_OFFSET_TABLE_+0x8>
+ 936:	ff 25 24 16 20 00    	jmpq   *0x201624(%rip)        # 201f60 <_GLOBAL_OFFSET_TABLE_+0x10>
+ 93c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000000940 <pthread_create@plt>:
+ 940:	ff 25 22 16 20 00    	jmpq   *0x201622(%rip)        # 201f68 <pthread_create@GLIBC_2.2.5>
+ 946:	68 00 00 00 00       	pushq  $0x0
+ 94b:	e9 e0 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000950 <puts@plt>:
+ 950:	ff 25 1a 16 20 00    	jmpq   *0x20161a(%rip)        # 201f70 <puts@GLIBC_2.2.5>
+ 956:	68 01 00 00 00       	pushq  $0x1
+ 95b:	e9 d0 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000960 <__stack_chk_fail@plt>:
+ 960:	ff 25 12 16 20 00    	jmpq   *0x201612(%rip)        # 201f78 <__stack_chk_fail@GLIBC_2.4>
+ 966:	68 02 00 00 00       	pushq  $0x2
+ 96b:	e9 c0 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000970 <pthread_setaffinity_np@plt>:
+ 970:	ff 25 0a 16 20 00    	jmpq   *0x20160a(%rip)        # 201f80 <pthread_setaffinity_np@GLIBC_2.3.4>
+ 976:	68 03 00 00 00       	pushq  $0x3
+ 97b:	e9 b0 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000980 <strtol@plt>:
+ 980:	ff 25 02 16 20 00    	jmpq   *0x201602(%rip)        # 201f88 <strtol@GLIBC_2.2.5>
+ 986:	68 04 00 00 00       	pushq  $0x4
+ 98b:	e9 a0 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000990 <malloc@plt>:
+ 990:	ff 25 fa 15 20 00    	jmpq   *0x2015fa(%rip)        # 201f90 <malloc@GLIBC_2.2.5>
+ 996:	68 05 00 00 00       	pushq  $0x5
+ 99b:	e9 90 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009a0 <pthread_barrier_init@plt>:
+ 9a0:	ff 25 f2 15 20 00    	jmpq   *0x2015f2(%rip)        # 201f98 <pthread_barrier_init@GLIBC_2.2.5>
+ 9a6:	68 06 00 00 00       	pushq  $0x6
+ 9ab:	e9 80 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009b0 <__printf_chk@plt>:
+ 9b0:	ff 25 ea 15 20 00    	jmpq   *0x2015ea(%rip)        # 201fa0 <__printf_chk@GLIBC_2.3.4>
+ 9b6:	68 07 00 00 00       	pushq  $0x7
+ 9bb:	e9 70 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009c0 <pthread_barrier_destroy@plt>:
+ 9c0:	ff 25 e2 15 20 00    	jmpq   *0x2015e2(%rip)        # 201fa8 <pthread_barrier_destroy@GLIBC_2.2.5>
+ 9c6:	68 08 00 00 00       	pushq  $0x8
+ 9cb:	e9 60 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009d0 <pthread_join@plt>:
+ 9d0:	ff 25 da 15 20 00    	jmpq   *0x2015da(%rip)        # 201fb0 <pthread_join@GLIBC_2.2.5>
+ 9d6:	68 09 00 00 00       	pushq  $0x9
+ 9db:	e9 50 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009e0 <sched_getcpu@plt>:
+ 9e0:	ff 25 d2 15 20 00    	jmpq   *0x2015d2(%rip)        # 201fb8 <sched_getcpu@GLIBC_2.6>
+ 9e6:	68 0a 00 00 00       	pushq  $0xa
+ 9eb:	e9 40 ff ff ff       	jmpq   930 <.plt>
+
+00000000000009f0 <exit@plt>:
+ 9f0:	ff 25 ca 15 20 00    	jmpq   *0x2015ca(%rip)        # 201fc0 <exit@GLIBC_2.2.5>
+ 9f6:	68 0b 00 00 00       	pushq  $0xb
+ 9fb:	e9 30 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000a00 <aligned_alloc@plt>:
+ a00:	ff 25 c2 15 20 00    	jmpq   *0x2015c2(%rip)        # 201fc8 <aligned_alloc@GLIBC_2.16>
+ a06:	68 0c 00 00 00       	pushq  $0xc
+ a0b:	e9 20 ff ff ff       	jmpq   930 <.plt>
+
+0000000000000a10 <pthread_barrier_wait@plt>:
+ a10:	ff 25 ba 15 20 00    	jmpq   *0x2015ba(%rip)        # 201fd0 <pthread_barrier_wait@GLIBC_2.2.5>
+ a16:	68 0d 00 00 00       	pushq  $0xd
+ a1b:	e9 10 ff ff ff       	jmpq   930 <.plt>
+
+Disassembly of section .plt.got:
+
+0000000000000a20 <__cxa_finalize@plt>:
+ a20:	ff 25 d2 15 20 00    	jmpq   *0x2015d2(%rip)        # 201ff8 <__cxa_finalize@GLIBC_2.2.5>
+ a26:	66 90                	xchg   %ax,%ax
+
+Disassembly of section .text:
+
+0000000000000a30 <main>:
+
+int main(int argc, char *argv[]){
+
+
+
+	if (argc != 3){
+     a30:	83 ff 03             	cmp    $0x3,%edi
+int main(int argc, char *argv[]){
+     a33:	53                   	push   %rbx
+	if (argc != 3){
+     a34:	0f 85 ba 01 00 00    	jne    bf4 <main+0x1c4>
+
+#ifdef __USE_EXTERN_INLINES
+__extern_inline int
+__NTH (atoi (const char *__nptr))
+{
+  return (int) strtol (__nptr, (char **) NULL, 10);
+     a3a:	48 8b 7e 08          	mov    0x8(%rsi),%rdi
+     a3e:	48 89 f3             	mov    %rsi,%rbx
+     a41:	ba 0a 00 00 00       	mov    $0xa,%edx
+     a46:	31 f6                	xor    %esi,%esi
+     a48:	e8 33 ff ff ff       	callq  980 <strtol@plt>
+     a4d:	48 8b 7b 10          	mov    0x10(%rbx),%rdi
+     a51:	31 f6                	xor    %esi,%esi
+     a53:	ba 0a 00 00 00       	mov    $0xa,%edx
+     a58:	89 05 62 1e 20 00    	mov    %eax,0x201e62(%rip)        # 2028c0 <coreId_1>
+     a5e:	e8 1d ff ff ff       	callq  980 <strtol@plt>
+}
+
+__fortify_function int
+printf (const char *__restrict __fmt, ...)
+{
+  return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+     a63:	48 8d 3d 1c 0b 00 00 	lea    0xb1c(%rip),%rdi        # 1586 <_IO_stdin_used+0xe6>
+     a6a:	89 05 78 1e 20 00    	mov    %eax,0x201e78(%rip)        # 2028e8 <coreId_2>
+     a70:	e8 db fe ff ff       	callq  950 <puts@plt>
+	#else
+		printf("REP_NOPS not enabled\n");
+	#endif
+
+
+  pthread_barrier_init (&barrier, NULL, 2);
+     a75:	48 8d 3d a4 18 20 00 	lea    0x2018a4(%rip),%rdi        # 202320 <barrier>
+     a7c:	ba 02 00 00 00       	mov    $0x2,%edx
+     a81:	31 f6                	xor    %esi,%esi
+     a83:	e8 18 ff ff ff       	callq  9a0 <pthread_barrier_init@plt>
+
+  //UserThreading userTh_0;
+  //UserThreading userTh_1;
+  //UserThreadingVec[0] = userTh_0;
+  //UserThreadingVec[1] = userTh_1;
+  UserThreading_Init(&UserThreadingVec[0], 0);
+     a88:	48 8d 3d f1 18 20 00 	lea    0x2018f1(%rip),%rdi        # 202380 <UserThreadingVec>
+     a8f:	31 f6                	xor    %esi,%esi
+  threadCount = 2;
+     a91:	c7 05 6d 18 20 00 02 	movl   $0x2,0x20186d(%rip)        # 202308 <threadCount>
+     a98:	00 00 00 
+  UserThreading_Init(&UserThreadingVec[0], 0);
+     a9b:	e8 b0 06 00 00       	callq  1150 <UserThreading_Init>
+  UserThreading_Init(&UserThreadingVec[1], 1);
+     aa0:	48 8d 3d 99 1a 20 00 	lea    0x201a99(%rip),%rdi        # 202540 <UserThreadingVec+0x1c0>
+     aa7:	be 01 00 00 00       	mov    $0x1,%esi
+     aac:	e8 9f 06 00 00       	callq  1150 <UserThreading_Init>
+  makeThread(&UserThreadingVec[0], pfc);
+     ab1:	48 8d 35 68 02 00 00 	lea    0x268(%rip),%rsi        # d20 <pfc>
+     ab8:	48 8d 3d c1 18 20 00 	lea    0x2018c1(%rip),%rdi        # 202380 <UserThreadingVec>
+     abf:	e8 7c 08 00 00       	callq  1340 <makeThread>
+/* rdtsc */
+extern __inline unsigned long long
+__attribute__((__gnu_inline__, __always_inline__, __artificial__))
+__rdtsc (void)
+{
+  return __builtin_ia32_rdtsc ();
+     ac4:	0f 31                	rdtsc  
+     ac6:	48 8d 35 ce 0a 00 00 	lea    0xace(%rip),%rsi        # 159b <_IO_stdin_used+0xfb>
+     acd:	bf 01 00 00 00       	mov    $0x1,%edi
+     ad2:	48 c1 e2 20          	shl    $0x20,%rdx
+     ad6:	48 09 d0             	or     %rdx,%rax
+     ad9:	48 89 c2             	mov    %rax,%rdx
+     adc:	31 c0                	xor    %eax,%eax
+     ade:	e8 cd fe ff ff       	callq  9b0 <__printf_chk@plt>
+  uint64_t timeCounter_start = __rdtsc();
+  printf("My start: %lu \n", timeCounter_start);
+
+  
+  OSThreadAvailable[0] = false;
+  pthread_create(&threadId_1, NULL, mpthread1, (void *)(intptr_t) 0);
+     ae3:	48 8d 15 a6 03 00 00 	lea    0x3a6(%rip),%rdx        # e90 <mpthread1>
+     aea:	48 8d 3d e7 1d 20 00 	lea    0x201de7(%rip),%rdi        # 2028d8 <threadId_1>
+     af1:	31 c9                	xor    %ecx,%ecx
+     af3:	31 f6                	xor    %esi,%esi
+  OSThreadAvailable[0] = false;
+     af5:	c6 05 f0 1d 20 00 00 	movb   $0x0,0x201df0(%rip)        # 2028ec <OSThreadAvailable>
+  pthread_create(&threadId_1, NULL, mpthread1, (void *)(intptr_t) 0);
+     afc:	e8 3f fe ff ff       	callq  940 <pthread_create@plt>
+  OSThreadAvailable[1] = false;
+  pthread_create(&threadId_2, NULL, mpthread2, (void *)(intptr_t) 1);
+     b01:	48 8d 15 b8 04 00 00 	lea    0x4b8(%rip),%rdx        # fc0 <mpthread2>
+     b08:	48 8d 3d f1 17 20 00 	lea    0x2017f1(%rip),%rdi        # 202300 <threadId_2>
+     b0f:	b9 01 00 00 00       	mov    $0x1,%ecx
+     b14:	31 f6                	xor    %esi,%esi
+  OSThreadAvailable[1] = false;
+     b16:	c6 05 d0 1d 20 00 00 	movb   $0x0,0x201dd0(%rip)        # 2028ed <OSThreadAvailable+0x1>
+  pthread_create(&threadId_2, NULL, mpthread2, (void *)(intptr_t) 1);
+     b1d:	e8 1e fe ff ff       	callq  940 <pthread_create@plt>
+
+  pthread_join(threadId_1, NULL); 
+     b22:	48 8b 3d af 1d 20 00 	mov    0x201daf(%rip),%rdi        # 2028d8 <threadId_1>
+     b29:	31 f6                	xor    %esi,%esi
+     b2b:	e8 a0 fe ff ff       	callq  9d0 <pthread_join@plt>
+  pthread_join(threadId_2, NULL);
+     b30:	48 8b 3d c9 17 20 00 	mov    0x2017c9(%rip),%rdi        # 202300 <threadId_2>
+     b37:	31 f6                	xor    %esi,%esi
+     b39:	e8 92 fe ff ff       	callq  9d0 <pthread_join@plt>
+     b3e:	0f 31                	rdtsc  
+  uint64_t timeCounter_end = __rdtsc();
+  //printf("Execution time per opertation: %lu clock cycles\n", 
+  //  (timeCounter_end - timeCounter_start) / (10000000) );
+
+
+  pthread_barrier_destroy(&barrier);
+     b40:	48 8d 3d d9 17 20 00 	lea    0x2017d9(%rip),%rdi        # 202320 <barrier>
+     b47:	e8 74 fe ff ff       	callq  9c0 <pthread_barrier_destroy@plt>
+     b4c:	48 8b 15 4d 17 20 00 	mov    0x20174d(%rip),%rdx        # 2022a0 <globalVariable>
+     b53:	48 8d 35 51 0a 00 00 	lea    0xa51(%rip),%rsi        # 15ab <_IO_stdin_used+0x10b>
+     b5a:	bf 01 00 00 00       	mov    $0x1,%edi
+     b5f:	31 c0                	xor    %eax,%eax
+     b61:	e8 4a fe ff ff       	callq  9b0 <__printf_chk@plt>
+  printf("globalVariable: %lld\n",globalVariable); 
+
+  printf("global_var1: %lld\n", global_var1);
+     b66:	48 8b 15 93 16 20 00 	mov    0x201693(%rip),%rdx        # 202200 <global_var1>
+     b6d:	48 8d 35 4d 0a 00 00 	lea    0xa4d(%rip),%rsi        # 15c1 <_IO_stdin_used+0x121>
+     b74:	bf 01 00 00 00       	mov    $0x1,%edi
+     b79:	31 c0                	xor    %eax,%eax
+     b7b:	e8 30 fe ff ff       	callq  9b0 <__printf_chk@plt>
+  printf("global_var2: %lld \n", global_var2); 
+     b80:	48 8b 15 f9 15 20 00 	mov    0x2015f9(%rip),%rdx        # 202180 <global_var2>
+     b87:	48 8d 35 46 0a 00 00 	lea    0xa46(%rip),%rsi        # 15d4 <_IO_stdin_used+0x134>
+     b8e:	bf 01 00 00 00       	mov    $0x1,%edi
+     b93:	31 c0                	xor    %eax,%eax
+     b95:	e8 16 fe ff ff       	callq  9b0 <__printf_chk@plt>
+  //printf("Time from thead Counters");
+  // smalller of start time and larger of end time
+ 
+  uint64_t thread_starttime = 
+  thread1_starttime < thread2_starttime ? thread1_starttime : thread2_starttime; 
+  uint64_t thread_endtime = 
+     b9a:	48 8b 15 57 1d 20 00 	mov    0x201d57(%rip),%rdx        # 2028f8 <thread1_endtime>
+     ba1:	48 39 15 28 1d 20 00 	cmp    %rdx,0x201d28(%rip)        # 2028d0 <thread2_endtime>
+  thread1_endtime > thread2_endtime ? thread1_endtime : thread2_endtime;
+
+  printf("Execution time is %lu clock cycles\n",
+     ba8:	48 b9 bd 42 7a e5 d5 	movabs $0xd6bf94d5e57a42bd,%rcx
+     baf:	94 bf d6 
+  uint64_t thread_endtime = 
+     bb2:	48 0f 43 15 16 1d 20 	cmovae 0x201d16(%rip),%rdx        # 2028d0 <thread2_endtime>
+     bb9:	00 
+  uint64_t thread_starttime = 
+     bba:	48 8b 05 07 1d 20 00 	mov    0x201d07(%rip),%rax        # 2028c8 <thread1_starttime>
+     bc1:	48 8d 35 38 09 00 00 	lea    0x938(%rip),%rsi        # 1500 <_IO_stdin_used+0x60>
+     bc8:	48 39 05 21 1d 20 00 	cmp    %rax,0x201d21(%rip)        # 2028f0 <thread2_starttime>
+     bcf:	bf 01 00 00 00       	mov    $0x1,%edi
+     bd4:	48 0f 46 05 14 1d 20 	cmovbe 0x201d14(%rip),%rax        # 2028f0 <thread2_starttime>
+     bdb:	00 
+    (thread_endtime - thread_starttime) / (10000000) );
+     bdc:	48 29 c2             	sub    %rax,%rdx
+  printf("Execution time is %lu clock cycles\n",
+     bdf:	48 89 d0             	mov    %rdx,%rax
+     be2:	48 f7 e1             	mul    %rcx
+     be5:	31 c0                	xor    %eax,%eax
+     be7:	48 c1 ea 17          	shr    $0x17,%rdx
+     beb:	e8 c0 fd ff ff       	callq  9b0 <__printf_chk@plt>
+
+}
+     bf0:	31 c0                	xor    %eax,%eax
+     bf2:	5b                   	pop    %rbx
+     bf3:	c3                   	retq   
+     bf4:	48 8d 3d d5 08 00 00 	lea    0x8d5(%rip),%rdi        # 14d0 <_IO_stdin_used+0x30>
+     bfb:	e8 50 fd ff ff       	callq  950 <puts@plt>
+		exit(1);
+     c00:	bf 01 00 00 00       	mov    $0x1,%edi
+     c05:	e8 e6 fd ff ff       	callq  9f0 <exit@plt>
+     c0a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000c10 <_start>:
+     c10:	31 ed                	xor    %ebp,%ebp
+     c12:	49 89 d1             	mov    %rdx,%r9
+     c15:	5e                   	pop    %rsi
+     c16:	48 89 e2             	mov    %rsp,%rdx
+     c19:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+     c1d:	50                   	push   %rax
+     c1e:	54                   	push   %rsp
+     c1f:	4c 8d 05 6a 08 00 00 	lea    0x86a(%rip),%r8        # 1490 <__libc_csu_fini>
+     c26:	48 8d 0d f3 07 00 00 	lea    0x7f3(%rip),%rcx        # 1420 <__libc_csu_init>
+     c2d:	48 8d 3d fc fd ff ff 	lea    -0x204(%rip),%rdi        # a30 <main>
+     c34:	ff 15 a6 13 20 00    	callq  *0x2013a6(%rip)        # 201fe0 <__libc_start_main@GLIBC_2.2.5>
+     c3a:	f4                   	hlt    
+     c3b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000c40 <deregister_tm_clones>:
+     c40:	48 8d 3d c9 13 20 00 	lea    0x2013c9(%rip),%rdi        # 202010 <__TMC_END__>
+     c47:	55                   	push   %rbp
+     c48:	48 8d 05 c1 13 20 00 	lea    0x2013c1(%rip),%rax        # 202010 <__TMC_END__>
+     c4f:	48 39 f8             	cmp    %rdi,%rax
+     c52:	48 89 e5             	mov    %rsp,%rbp
+     c55:	74 19                	je     c70 <deregister_tm_clones+0x30>
+     c57:	48 8b 05 7a 13 20 00 	mov    0x20137a(%rip),%rax        # 201fd8 <_ITM_deregisterTMCloneTable>
+     c5e:	48 85 c0             	test   %rax,%rax
+     c61:	74 0d                	je     c70 <deregister_tm_clones+0x30>
+     c63:	5d                   	pop    %rbp
+     c64:	ff e0                	jmpq   *%rax
+     c66:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     c6d:	00 00 00 
+     c70:	5d                   	pop    %rbp
+     c71:	c3                   	retq   
+     c72:	0f 1f 40 00          	nopl   0x0(%rax)
+     c76:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     c7d:	00 00 00 
+
+0000000000000c80 <register_tm_clones>:
+     c80:	48 8d 3d 89 13 20 00 	lea    0x201389(%rip),%rdi        # 202010 <__TMC_END__>
+     c87:	48 8d 35 82 13 20 00 	lea    0x201382(%rip),%rsi        # 202010 <__TMC_END__>
+     c8e:	55                   	push   %rbp
+     c8f:	48 29 fe             	sub    %rdi,%rsi
+     c92:	48 89 e5             	mov    %rsp,%rbp
+     c95:	48 c1 fe 03          	sar    $0x3,%rsi
+     c99:	48 89 f0             	mov    %rsi,%rax
+     c9c:	48 c1 e8 3f          	shr    $0x3f,%rax
+     ca0:	48 01 c6             	add    %rax,%rsi
+     ca3:	48 d1 fe             	sar    %rsi
+     ca6:	74 18                	je     cc0 <register_tm_clones+0x40>
+     ca8:	48 8b 05 41 13 20 00 	mov    0x201341(%rip),%rax        # 201ff0 <_ITM_registerTMCloneTable>
+     caf:	48 85 c0             	test   %rax,%rax
+     cb2:	74 0c                	je     cc0 <register_tm_clones+0x40>
+     cb4:	5d                   	pop    %rbp
+     cb5:	ff e0                	jmpq   *%rax
+     cb7:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+     cbe:	00 00 
+     cc0:	5d                   	pop    %rbp
+     cc1:	c3                   	retq   
+     cc2:	0f 1f 40 00          	nopl   0x0(%rax)
+     cc6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+     ccd:	00 00 00 
+
+0000000000000cd0 <__do_global_dtors_aux>:
+     cd0:	80 3d a9 13 20 00 00 	cmpb   $0x0,0x2013a9(%rip)        # 202080 <completed.7698>
+     cd7:	75 2f                	jne    d08 <__do_global_dtors_aux+0x38>
+     cd9:	48 83 3d 17 13 20 00 	cmpq   $0x0,0x201317(%rip)        # 201ff8 <__cxa_finalize@GLIBC_2.2.5>
+     ce0:	00 
+     ce1:	55                   	push   %rbp
+     ce2:	48 89 e5             	mov    %rsp,%rbp
+     ce5:	74 0c                	je     cf3 <__do_global_dtors_aux+0x23>
+     ce7:	48 8b 3d 1a 13 20 00 	mov    0x20131a(%rip),%rdi        # 202008 <__dso_handle>
+     cee:	e8 2d fd ff ff       	callq  a20 <__cxa_finalize@plt>
+     cf3:	e8 48 ff ff ff       	callq  c40 <deregister_tm_clones>
+     cf8:	c6 05 81 13 20 00 01 	movb   $0x1,0x201381(%rip)        # 202080 <completed.7698>
+     cff:	5d                   	pop    %rbp
+     d00:	c3                   	retq   
+     d01:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+     d08:	f3 c3                	repz retq 
+     d0a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000d10 <frame_dummy>:
+     d10:	55                   	push   %rbp
+     d11:	48 89 e5             	mov    %rsp,%rbp
+     d14:	5d                   	pop    %rbp
+     d15:	e9 66 ff ff ff       	jmpq   c80 <register_tm_clones>
+     d1a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000000d20 <pfc>:
+void pfc(){
+     d20:	41 54                	push   %r12
+     d22:	55                   	push   %rbp
+     d23:	48 8d 35 7e 07 00 00 	lea    0x77e(%rip),%rsi        # 14a8 <_IO_stdin_used+0x8>
+     d2a:	53                   	push   %rbx
+     d2b:	64 8b 14 25 fc ff ff 	mov    %fs:0xfffffffffffffffc,%edx
+     d32:	ff 
+     d33:	bf 01 00 00 00       	mov    $0x1,%edi
+     d38:	31 c0                	xor    %eax,%eax
+     d3a:	48 8d 2d 3f 16 20 00 	lea    0x20163f(%rip),%rbp        # 202380 <UserThreadingVec>
+    UserThreadingVec[0].buf2 = UserThreadingVec[1].buf;
+     d41:	bb 80 96 98 00       	mov    $0x989680,%ebx
+     d46:	e8 65 fc ff ff       	callq  9b0 <__printf_chk@plt>
+    UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
+     d4b:	48 8b 05 ae 16 20 00 	mov    0x2016ae(%rip),%rax        # 202400 <UserThreadingVec+0x80>
+      ThreadExit(&UserThreadingVec[threadId]);
+     d52:	49 89 ec             	mov    %rbp,%r12
+    UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
+     d55:	48 89 05 64 18 20 00 	mov    %rax,0x201864(%rip)        # 2025c0 <UserThreadingVec+0x240>
+    UserThreadingVec[1].buf2 = UserThreadingVec[0].buf; 
+     d5c:	48 8b 05 1d 16 20 00 	mov    0x20161d(%rip),%rax        # 202380 <UserThreadingVec>
+     d63:	48 89 05 16 18 20 00 	mov    %rax,0x201816(%rip)        # 202580 <UserThreadingVec+0x200>
+    UserThreadingVec[0].buf2 = UserThreadingVec[1].buf;
+     d6a:	48 8b 05 cf 17 20 00 	mov    0x2017cf(%rip),%rax        # 202540 <UserThreadingVec+0x1c0>
+     d71:	48 89 05 48 16 20 00 	mov    %rax,0x201648(%rip)        # 2023c0 <UserThreadingVec+0x40>
+     d78:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+     d7f:	00 
+        if (threadId == 0)
+     d80:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+     d87:	ff ff 
+     d89:	85 c0                	test   %eax,%eax
+     d8b:	0f 85 bf 00 00 00    	jne    e50 <pfc+0x130>
+          global_var1++;
+     d91:	48 8b 05 68 14 20 00 	mov    0x201468(%rip),%rax        # 202200 <global_var1>
+      ThreadExit(&UserThreadingVec[threadId]);
+     d98:	4c 89 e7             	mov    %r12,%rdi
+          global_var1++;
+     d9b:	48 83 c0 01          	add    $0x1,%rax
+     d9f:	48 89 05 5a 14 20 00 	mov    %rax,0x20145a(%rip)        # 202200 <global_var1>
+      ThreadExit(&UserThreadingVec[threadId]);
+     da6:	e8 75 05 00 00       	callq  1320 <ThreadExit>
+    for (int i=0; i < 10000000; i++){
+     dab:	83 eb 01             	sub    $0x1,%ebx
+     dae:	75 d0                	jne    d80 <pfc+0x60>
+     db0:	48 8d 3d 71 07 00 00 	lea    0x771(%rip),%rdi        # 1528 <_IO_stdin_used+0x88>
+     db7:	e8 94 fb ff ff       	callq  950 <puts@plt>
+     dbc:	48 8d 35 6f 07 00 00 	lea    0x76f(%rip),%rsi        # 1532 <_IO_stdin_used+0x92>
+     dc3:	31 d2                	xor    %edx,%edx
+     dc5:	bf 01 00 00 00       	mov    $0x1,%edi
+     dca:	31 c0                	xor    %eax,%eax
+     dcc:	e8 df fb ff ff       	callq  9b0 <__printf_chk@plt>
+    UserThreadingVec[(threadId + 1) % 2].current_thread->context.mxcsr = -2;
+     dd1:	64 8b 0c 25 fc ff ff 	mov    %fs:0xfffffffffffffffc,%ecx
+     dd8:	ff 
+     dd9:	8d 41 01             	lea    0x1(%rcx),%eax
+     ddc:	89 c2                	mov    %eax,%edx
+     dde:	c1 ea 1f             	shr    $0x1f,%edx
+     de1:	01 d0                	add    %edx,%eax
+     de3:	83 e0 01             	and    $0x1,%eax
+     de6:	29 d0                	sub    %edx,%eax
+     de8:	48 98                	cltq   
+     dea:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+     df1:	00 
+     df2:	48 29 c2             	sub    %rax,%rdx
+     df5:	48 89 d0             	mov    %rdx,%rax
+     df8:	48 c7 c2 fe ff ff ff 	mov    $0xfffffffffffffffe,%rdx
+     dff:	48 c1 e0 06          	shl    $0x6,%rax
+     e03:	48 01 e8             	add    %rbp,%rax
+     e06:	48 8b b0 80 00 00 00 	mov    0x80(%rax),%rsi
+     e0d:	48 89 96 38 10 00 00 	mov    %rdx,0x1038(%rsi)
+    UserThreadingVec[(threadId + 1) % 2].sp_exit_check = true;
+     e14:	c6 80 40 01 00 00 01 	movb   $0x1,0x140(%rax)
+    UserThreadingVec[threadId].current_thread->context.mxcsr = -2;
+     e1b:	48 63 c1             	movslq %ecx,%rax
+     e1e:	48 8d 3c c5 00 00 00 	lea    0x0(,%rax,8),%rdi
+     e25:	00 
+     e26:	48 29 c7             	sub    %rax,%rdi
+     e29:	48 c1 e7 06          	shl    $0x6,%rdi
+     e2d:	48 01 ef             	add    %rbp,%rdi
+     e30:	48 8b 87 80 00 00 00 	mov    0x80(%rdi),%rax
+     e37:	48 89 90 38 10 00 00 	mov    %rdx,0x1038(%rax)
+    UserThreadingVec[threadId].sp_exit_check = true;
+     e3e:	c6 87 40 01 00 00 01 	movb   $0x1,0x140(%rdi)
+}
+     e45:	5b                   	pop    %rbx
+     e46:	5d                   	pop    %rbp
+     e47:	41 5c                	pop    %r12
+    ThreadExit(&UserThreadingVec[threadId]);
+     e49:	e9 d2 04 00 00       	jmpq   1320 <ThreadExit>
+     e4e:	66 90                	xchg   %ax,%ax
+      ThreadExit(&UserThreadingVec[threadId]);
+     e50:	48 8d 3c c5 00 00 00 	lea    0x0(,%rax,8),%rdi
+     e57:	00 
+          global_var2++;
+     e58:	48 8b 15 21 13 20 00 	mov    0x201321(%rip),%rdx        # 202180 <global_var2>
+      ThreadExit(&UserThreadingVec[threadId]);
+     e5f:	48 29 c7             	sub    %rax,%rdi
+     e62:	48 c1 e7 06          	shl    $0x6,%rdi
+          global_var2++;
+     e66:	48 83 c2 01          	add    $0x1,%rdx
+      ThreadExit(&UserThreadingVec[threadId]);
+     e6a:	48 01 ef             	add    %rbp,%rdi
+          global_var2++;
+     e6d:	48 89 15 0c 13 20 00 	mov    %rdx,0x20130c(%rip)        # 202180 <global_var2>
+      ThreadExit(&UserThreadingVec[threadId]);
+     e74:	e8 a7 04 00 00       	callq  1320 <ThreadExit>
+    for (int i=0; i < 10000000; i++){
+     e79:	83 eb 01             	sub    $0x1,%ebx
+     e7c:	0f 85 fe fe ff ff    	jne    d80 <pfc+0x60>
+     e82:	e9 29 ff ff ff       	jmpq   db0 <pfc+0x90>
+     e87:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+     e8e:	00 00 
+
+0000000000000e90 <mpthread1>:
+void *mpthread1(void *arg){
+     e90:	53                   	push   %rbx
+    CPU_ZERO(&cpuset);
+     e91:	b9 10 00 00 00       	mov    $0x10,%ecx
+void *mpthread1(void *arg){
+     e96:	48 89 fb             	mov    %rdi,%rbx
+     e99:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+     ea0:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+     ea7:	00 00 
+     ea9:	48 89 84 24 88 00 00 	mov    %rax,0x88(%rsp)
+     eb0:	00 
+     eb1:	31 c0                	xor    %eax,%eax
+    CPU_ZERO(&cpuset);
+     eb3:	48 89 e2             	mov    %rsp,%rdx
+     eb6:	48 89 d7             	mov    %rdx,%rdi
+     eb9:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+    CPU_SET(coreId_1, &cpuset);
+     ebc:	48 63 05 fd 19 20 00 	movslq 0x2019fd(%rip),%rax        # 2028c0 <coreId_1>
+     ec3:	48 3d ff 03 00 00    	cmp    $0x3ff,%rax
+     ec9:	77 13                	ja     ede <mpthread1+0x4e>
+     ecb:	48 89 c1             	mov    %rax,%rcx
+     ece:	be 01 00 00 00       	mov    $0x1,%esi
+     ed3:	48 c1 e8 06          	shr    $0x6,%rax
+     ed7:	48 d3 e6             	shl    %cl,%rsi
+     eda:	48 09 34 c2          	or     %rsi,(%rdx,%rax,8)
+    pthread_setaffinity_np(threadId_1, sizeof(cpu_set_t), &cpuset);
+     ede:	48 8b 3d f3 19 20 00 	mov    0x2019f3(%rip),%rdi        # 2028d8 <threadId_1>
+     ee5:	be 80 00 00 00       	mov    $0x80,%esi
+     eea:	e8 81 fa ff ff       	callq  970 <pthread_setaffinity_np@plt>
+    printf("OS Thread Affinity %d \n", sched_getcpu());
+     eef:	e8 ec fa ff ff       	callq  9e0 <sched_getcpu@plt>
+     ef4:	48 8d 35 48 06 00 00 	lea    0x648(%rip),%rsi        # 1543 <_IO_stdin_used+0xa3>
+     efb:	89 c2                	mov    %eax,%edx
+     efd:	bf 01 00 00 00       	mov    $0x1,%edi
+     f02:	31 c0                	xor    %eax,%eax
+     f04:	e8 a7 fa ff ff       	callq  9b0 <__printf_chk@plt>
+     f09:	48 8d 35 4b 06 00 00 	lea    0x64b(%rip),%rsi        # 155b <_IO_stdin_used+0xbb>
+     f10:	89 da                	mov    %ebx,%edx
+     f12:	bf 01 00 00 00       	mov    $0x1,%edi
+     f17:	31 c0                	xor    %eax,%eax
+    threadId = (intptr_t) arg;
+     f19:	64 89 1c 25 fc ff ff 	mov    %ebx,%fs:0xfffffffffffffffc
+     f20:	ff 
+    OSThreadAvailable[threadId] = true;
+     f21:	48 8d 1d c4 19 20 00 	lea    0x2019c4(%rip),%rbx        # 2028ec <OSThreadAvailable>
+     f28:	e8 83 fa ff ff       	callq  9b0 <__printf_chk@plt>
+     f2d:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+     f34:	ff ff 
+    pthread_barrier_wait(&barrier);
+     f36:	48 8d 3d e3 13 20 00 	lea    0x2013e3(%rip),%rdi        # 202320 <barrier>
+    OSThreadAvailable[threadId] = true;
+     f3d:	c6 04 03 01          	movb   $0x1,(%rbx,%rax,1)
+    pthread_barrier_wait(&barrier);
+     f41:	e8 ca fa ff ff       	callq  a10 <pthread_barrier_wait@plt>
+     f46:	0f 31                	rdtsc  
+     f48:	48 c1 e2 20          	shl    $0x20,%rdx
+     f4c:	48 09 d0             	or     %rdx,%rax
+    thread1_starttime = __rdtsc();
+     f4f:	48 89 05 72 19 20 00 	mov    %rax,0x201972(%rip)        # 2028c8 <thread1_starttime>
+    Scheduler(&UserThreadingVec[threadId]);
+     f56:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+     f5d:	ff ff 
+     f5f:	48 8d 3c c5 00 00 00 	lea    0x0(,%rax,8),%rdi
+     f66:	00 
+     f67:	48 29 c7             	sub    %rax,%rdi
+     f6a:	48 8d 05 0f 14 20 00 	lea    0x20140f(%rip),%rax        # 202380 <UserThreadingVec>
+     f71:	48 c1 e7 06          	shl    $0x6,%rdi
+     f75:	48 01 c7             	add    %rax,%rdi
+     f78:	e8 93 02 00 00       	callq  1210 <Scheduler>
+    OSThreadAvailable[threadId] = false;
+     f7d:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+     f84:	ff ff 
+     f86:	c6 04 03 00          	movb   $0x0,(%rbx,%rax,1)
+     f8a:	0f 31                	rdtsc  
+     f8c:	48 c1 e2 20          	shl    $0x20,%rdx
+     f90:	48 09 d0             	or     %rdx,%rax
+}
+     f93:	48 8b 8c 24 88 00 00 	mov    0x88(%rsp),%rcx
+     f9a:	00 
+     f9b:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+     fa2:	00 00 
+    thread1_endtime = __rdtsc();
+     fa4:	48 89 05 4d 19 20 00 	mov    %rax,0x20194d(%rip)        # 2028f8 <thread1_endtime>
+}
+     fab:	75 09                	jne    fb6 <mpthread1+0x126>
+     fad:	48 81 c4 90 00 00 00 	add    $0x90,%rsp
+     fb4:	5b                   	pop    %rbx
+     fb5:	c3                   	retq   
+     fb6:	e8 a5 f9 ff ff       	callq  960 <__stack_chk_fail@plt>
+     fbb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000000fc0 <mpthread2>:
+void *mpthread2(void *arg){
+     fc0:	53                   	push   %rbx
+    CPU_ZERO(&cpuset2);
+     fc1:	b9 10 00 00 00       	mov    $0x10,%ecx
+void *mpthread2(void *arg){
+     fc6:	48 89 fb             	mov    %rdi,%rbx
+     fc9:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+     fd0:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+     fd7:	00 00 
+     fd9:	48 89 84 24 88 00 00 	mov    %rax,0x88(%rsp)
+     fe0:	00 
+     fe1:	31 c0                	xor    %eax,%eax
+    CPU_ZERO(&cpuset2);
+     fe3:	48 89 e2             	mov    %rsp,%rdx
+     fe6:	48 89 d7             	mov    %rdx,%rdi
+     fe9:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+    CPU_SET(coreId_2, &cpuset2);
+     fec:	48 63 05 f5 18 20 00 	movslq 0x2018f5(%rip),%rax        # 2028e8 <coreId_2>
+     ff3:	48 3d ff 03 00 00    	cmp    $0x3ff,%rax
+     ff9:	77 13                	ja     100e <mpthread2+0x4e>
+     ffb:	48 89 c1             	mov    %rax,%rcx
+     ffe:	be 01 00 00 00       	mov    $0x1,%esi
+    1003:	48 c1 e8 06          	shr    $0x6,%rax
+    1007:	48 d3 e6             	shl    %cl,%rsi
+    100a:	48 09 34 c2          	or     %rsi,(%rdx,%rax,8)
+    pthread_setaffinity_np(threadId_2, sizeof(cpu_set_t), &cpuset2);
+    100e:	48 8b 3d eb 12 20 00 	mov    0x2012eb(%rip),%rdi        # 202300 <threadId_2>
+    1015:	be 80 00 00 00       	mov    $0x80,%esi
+    101a:	e8 51 f9 ff ff       	callq  970 <pthread_setaffinity_np@plt>
+    printf("OS Thread Affinity %d \n", sched_getcpu());
+    101f:	e8 bc f9 ff ff       	callq  9e0 <sched_getcpu@plt>
+    1024:	48 8d 35 18 05 00 00 	lea    0x518(%rip),%rsi        # 1543 <_IO_stdin_used+0xa3>
+    102b:	89 c2                	mov    %eax,%edx
+    102d:	bf 01 00 00 00       	mov    $0x1,%edi
+    1032:	31 c0                	xor    %eax,%eax
+    1034:	e8 77 f9 ff ff       	callq  9b0 <__printf_chk@plt>
+    1039:	48 8d 35 1b 05 00 00 	lea    0x51b(%rip),%rsi        # 155b <_IO_stdin_used+0xbb>
+    1040:	89 da                	mov    %ebx,%edx
+    1042:	bf 01 00 00 00       	mov    $0x1,%edi
+    1047:	31 c0                	xor    %eax,%eax
+    threadId = (intptr_t) arg;
+    1049:	64 89 1c 25 fc ff ff 	mov    %ebx,%fs:0xfffffffffffffffc
+    1050:	ff 
+    OSThreadAvailable[threadId] = true;
+    1051:	48 8d 1d 94 18 20 00 	lea    0x201894(%rip),%rbx        # 2028ec <OSThreadAvailable>
+    1058:	e8 53 f9 ff ff       	callq  9b0 <__printf_chk@plt>
+    105d:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+    1064:	ff ff 
+    pthread_barrier_wait(&barrier);
+    1066:	48 8d 3d b3 12 20 00 	lea    0x2012b3(%rip),%rdi        # 202320 <barrier>
+    OSThreadAvailable[threadId] = true;
+    106d:	c6 04 03 01          	movb   $0x1,(%rbx,%rax,1)
+    pthread_barrier_wait(&barrier);
+    1071:	e8 9a f9 ff ff       	callq  a10 <pthread_barrier_wait@plt>
+    1076:	0f 31                	rdtsc  
+    1078:	48 c1 e2 20          	shl    $0x20,%rdx
+    107c:	48 09 d0             	or     %rdx,%rax
+    thread2_starttime = __rdtsc();
+    107f:	48 89 05 6a 18 20 00 	mov    %rax,0x20186a(%rip)        # 2028f0 <thread2_starttime>
+    Scheduler(&UserThreadingVec[threadId]);
+    1086:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+    108d:	ff ff 
+    108f:	48 8d 3c c5 00 00 00 	lea    0x0(,%rax,8),%rdi
+    1096:	00 
+    1097:	48 29 c7             	sub    %rax,%rdi
+    109a:	48 8d 05 df 12 20 00 	lea    0x2012df(%rip),%rax        # 202380 <UserThreadingVec>
+    10a1:	48 c1 e7 06          	shl    $0x6,%rdi
+    10a5:	48 01 c7             	add    %rax,%rdi
+    10a8:	e8 63 01 00 00       	callq  1210 <Scheduler>
+    OSThreadAvailable[threadId] = false;
+    10ad:	64 48 63 04 25 fc ff 	movslq %fs:0xfffffffffffffffc,%rax
+    10b4:	ff ff 
+    10b6:	c6 04 03 00          	movb   $0x0,(%rbx,%rax,1)
+    10ba:	0f 31                	rdtsc  
+    10bc:	48 c1 e2 20          	shl    $0x20,%rdx
+    10c0:	48 09 d0             	or     %rdx,%rax
+}
+    10c3:	48 8b 8c 24 88 00 00 	mov    0x88(%rsp),%rcx
+    10ca:	00 
+    10cb:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    10d2:	00 00 
+    thread2_endtime = __rdtsc();
+    10d4:	48 89 05 f5 17 20 00 	mov    %rax,0x2017f5(%rip)        # 2028d0 <thread2_endtime>
+}
+    10db:	75 09                	jne    10e6 <mpthread2+0x126>
+    10dd:	48 81 c4 90 00 00 00 	add    $0x90,%rsp
+    10e4:	5b                   	pop    %rbx
+    10e5:	c3                   	retq   
+    10e6:	e8 75 f8 ff ff       	callq  960 <__stack_chk_fail@plt>
+    10eb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000010f0 <allSchedulersExit>:
+    if (i != threadId )
+    10f0:	64 8b 04 25 fc ff ff 	mov    %fs:0xfffffffffffffffc,%eax
+    10f7:	ff 
+    10f8:	85 c0                	test   %eax,%eax
+    10fa:	74 1c                	je     1118 <allSchedulersExit+0x28>
+    10fc:	83 f8 01             	cmp    $0x1,%eax
+      UserThreadingVec[i].sp_exit_check = true;
+    10ff:	c6 05 ba 13 20 00 01 	movb   $0x1,0x2013ba(%rip)        # 2024c0 <UserThreadingVec+0x140>
+    if (i != threadId )
+    1106:	75 10                	jne    1118 <allSchedulersExit+0x28>
+    1108:	48 8d 3d 5b 04 00 00 	lea    0x45b(%rip),%rdi        # 156a <_IO_stdin_used+0xca>
+    110f:	e9 3c f8 ff ff       	jmpq   950 <puts@plt>
+    1114:	0f 1f 40 00          	nopl   0x0(%rax)
+    1118:	48 8d 3d 4b 04 00 00 	lea    0x44b(%rip),%rdi        # 156a <_IO_stdin_used+0xca>
+      UserThreadingVec[i].sp_exit_check = true;
+    111f:	c6 05 5a 15 20 00 01 	movb   $0x1,0x20155a(%rip)        # 202680 <UserThreadingVec+0x300>
+    1126:	e9 25 f8 ff ff       	jmpq   950 <puts@plt>
+    112b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000001130 <Thread_Init>:
+    // if (create_stack)
+    //     _thread->stack = (uint8_t*)aligned_alloc(16, kStackSize) + kStackSize;
+    // else
+    //     _thread->stack = NULL;
+
+      _thread->context.mxcsr = 0; //-1;
+    1130:	48 c7 87 38 10 00 00 	movq   $0x0,0x1038(%rdi)
+    1137:	00 00 00 00 
+    //_thread->context.mxcsr = 0x1F80;
+    // _thread->context.x87 = 0x037F;
+}
+    113b:	c3                   	retq   
+    113c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000001140 <Thread_Destory>:
+    1140:	f3 c3                	repz retq 
+    1142:	0f 1f 40 00          	nopl   0x0(%rax)
+    1146:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    114d:	00 00 00 
+
+0000000000001150 <UserThreading_Init>:
+    //     free(_thread->stack - kStackSize) ;
+}
+
+
+
+void UserThreading_Init(UserThreading *_uth /*,void*/, int _id){
+    1150:	55                   	push   %rbp
+    1151:	53                   	push   %rbx
+    1152:	89 f5                	mov    %esi,%ebp
+    1154:	48 89 fb             	mov    %rdi,%rbx
+
+    _uth->buf = aligned_alloc(64, sizeof(Thread));
+    1157:	be 40 10 00 00       	mov    $0x1040,%esi
+    115c:	bf 40 00 00 00       	mov    $0x40,%edi
+void UserThreading_Init(UserThreading *_uth /*,void*/, int _id){
+    1161:	48 83 ec 08          	sub    $0x8,%rsp
+    _uth->buf = aligned_alloc(64, sizeof(Thread));
+    1165:	e8 96 f8 ff ff       	callq  a00 <aligned_alloc@plt>
+    _uth->current_thread = 0;
+    116a:	48 c7 83 80 00 00 00 	movq   $0x0,0x80(%rbx)
+    1171:	00 00 00 00 
+
+    _uth->sp_exit_check = false;
+    _uth->id = _id;
+    1175:	89 ab 80 01 00 00    	mov    %ebp,0x180(%rbx)
+    _uth->sp_exit_check = false;
+    117b:	c6 83 40 01 00 00 00 	movb   $0x0,0x140(%rbx)
+    _uth->buf = aligned_alloc(64, sizeof(Thread));
+    1182:	48 89 03             	mov    %rax,(%rbx)
+
+    _uth->buf->context.mxcsr = 11;
+    1185:	48 c7 80 38 10 00 00 	movq   $0xb,0x1038(%rax)
+    118c:	0b 00 00 00 
+    //_uth->buf->context.mxcsr = 11;
+
+}
+    1190:	48 83 c4 08          	add    $0x8,%rsp
+    1194:	5b                   	pop    %rbx
+    1195:	5d                   	pop    %rbp
+    1196:	c3                   	retq   
+    1197:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+    119e:	00 00 
+
+00000000000011a0 <changeContext>:
+
+void changeContext(UserThreading *_uth){
+    11a0:	55                   	push   %rbp
+    11a1:	48 89 e5             	mov    %rsp,%rbp
+    11a4:	41 57                	push   %r15
+    11a6:	41 56                	push   %r14
+    11a8:	41 55                	push   %r13
+    11aa:	41 54                	push   %r12
+    11ac:	53                   	push   %rbx
+              Context *aa = &(_uth->sched_thread->context);
+            Context *bb = &(_uth->buf->context);
+    11ad:	48 8b 07             	mov    (%rdi),%rax
+    11b0:	48 8d 90 00 10 00 00 	lea    0x1000(%rax),%rdx
+              Context *aa = &(_uth->sched_thread->context);
+    11b7:	48 8b 87 00 01 00 00 	mov    0x100(%rdi),%rax
+    11be:	48 05 00 10 00 00    	add    $0x1000,%rax
+
+            __asm__ __volatile__(
+    11c4:	48 89 20             	mov    %rsp,(%rax)
+    11c7:	4c 89 78 08          	mov    %r15,0x8(%rax)
+    11cb:	4c 89 70 10          	mov    %r14,0x10(%rax)
+    11cf:	4c 89 68 18          	mov    %r13,0x18(%rax)
+    11d3:	4c 89 60 20          	mov    %r12,0x20(%rax)
+    11d7:	48 89 58 28          	mov    %rbx,0x28(%rax)
+    11db:	48 89 68 30          	mov    %rbp,0x30(%rax)
+    11df:	48 8b 22             	mov    (%rdx),%rsp
+    11e2:	4c 8b 7a 08          	mov    0x8(%rdx),%r15
+    11e6:	4c 8b 72 10          	mov    0x10(%rdx),%r14
+    11ea:	4c 8b 6a 18          	mov    0x18(%rdx),%r13
+    11ee:	4c 8b 62 20          	mov    0x20(%rdx),%r12
+    11f2:	48 8b 5a 28          	mov    0x28(%rdx),%rbx
+    11f6:	48 8b 6a 30          	mov    0x30(%rdx),%rbp
+    11fa:	c3                   	retq   
+              //: "memory"
+              : "%rsp", "%r15", "%r14", "%r13", "%r12", "%rbx", "%rbp"
+            );
+
+
+}
+    11fb:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+    11ff:	5b                   	pop    %rbx
+    1200:	41 5c                	pop    %r12
+    1202:	41 5d                	pop    %r13
+    1204:	41 5e                	pop    %r14
+    1206:	41 5f                	pop    %r15
+    1208:	5d                   	pop    %rbp
+    1209:	c3                   	retq   
+    120a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+
+0000000000001210 <Scheduler>:
+
+void Scheduler(UserThreading *_uth){
+    1210:	55                   	push   %rbp
+    1211:	53                   	push   %rbx
+    1212:	48 89 fb             	mov    %rdi,%rbx
+    1215:	48 8d 3d cc 03 00 00 	lea    0x3cc(%rip),%rdi        # 15e8 <_IO_stdin_used+0x148>
+    121c:	48 83 ec 08          	sub    $0x8,%rsp
+    1220:	e8 2b f7 ff ff       	callq  950 <puts@plt>
+
+  printf("Scheduler Started \n");
+  _uth->sched_thread = (Thread *) malloc(sizeof(Thread));
+    1225:	bf 40 10 00 00       	mov    $0x1040,%edi
+    122a:	e8 61 f7 ff ff       	callq  990 <malloc@plt>
+  Thread_Init(_uth->sched_thread, true);
+
+  //while (_uth->current_thread == 0);
+
+  while (_uth->buf->context.mxcsr == 11);
+    122f:	48 8b 33             	mov    (%rbx),%rsi
+  _uth->sched_thread = (Thread *) malloc(sizeof(Thread));
+    1232:	48 89 83 00 01 00 00 	mov    %rax,0x100(%rbx)
+      _thread->context.mxcsr = 0; //-1;
+    1239:	48 c7 80 38 10 00 00 	movq   $0x0,0x1038(%rax)
+    1240:	00 00 00 00 
+    1244:	0f 1f 40 00          	nopl   0x0(%rax)
+  while (_uth->buf->context.mxcsr == 11);
+    1248:	48 8b 86 38 10 00 00 	mov    0x1038(%rsi),%rax
+    124f:	48 83 f8 0b          	cmp    $0xb,%rax
+    1253:	74 f3                	je     1248 <Scheduler+0x38>
+
+  int i = 0;
+    1255:	31 ed                	xor    %ebp,%ebp
+  //while( _uth->current_thread->context.mxcsr != -2 ){
+
+  while (i < 5000000){
+
+      //printf("tiktik %d\n", _uth->current_thread->context.mxcsr);
+      if ( /*_uth->current_thread &&*/ _uth->buf->context.mxcsr == _uth->id){
+    1257:	48 63 93 80 01 00 00 	movslq 0x180(%rbx),%rdx
+    125e:	48 8b 86 38 10 00 00 	mov    0x1038(%rsi),%rax
+    1265:	48 39 d0             	cmp    %rdx,%rax
+    1268:	74 12                	je     127c <Scheduler+0x6c>
+    126a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    1270:	48 8b 86 38 10 00 00 	mov    0x1038(%rsi),%rax
+    1277:	48 39 d0             	cmp    %rdx,%rax
+    127a:	75 f4                	jne    1270 <Scheduler+0x60>
+        //printf("tiktik %d\n", _uth->current_thread->context.mxcsr);
+            i++;
+            
+            ContextSwitch(&(_uth->sched_thread->context), &(_uth->buf->context));
+    127c:	48 8b 83 00 01 00 00 	mov    0x100(%rbx),%rax
+    1283:	48 81 c6 00 10 00 00 	add    $0x1000,%rsi
+            i++;
+    128a:	83 c5 01             	add    $0x1,%ebp
+            ContextSwitch(&(_uth->sched_thread->context), &(_uth->buf->context));
+    128d:	48 8d b8 00 10 00 00 	lea    0x1000(%rax),%rdi
+    1294:	e8 f7 00 00 00       	callq  1390 <context_switch>
+            //__m512i A_vec = _mm512_load_epi64(&(_uth->current_thread->context));
+            //_mm512_store_epi64((void*) &_uth->buf2->context, A_vec);
+            //
+
+            //
+            _uth->buf2->context =  (_uth->buf->context);
+    1299:	48 8b 33             	mov    (%rbx),%rsi
+    129c:	48 8b 43 40          	mov    0x40(%rbx),%rax
+  while (i < 5000000){
+    12a0:	81 fd 40 4b 4c 00    	cmp    $0x4c4b40,%ebp
+            _uth->buf2->context =  (_uth->buf->context);
+    12a6:	f3 0f 6f 86 00 10 00 	movdqu 0x1000(%rsi),%xmm0
+    12ad:	00 
+    12ae:	0f 11 80 00 10 00 00 	movups %xmm0,0x1000(%rax)
+    12b5:	f3 0f 6f 86 10 10 00 	movdqu 0x1010(%rsi),%xmm0
+    12bc:	00 
+    12bd:	0f 11 80 10 10 00 00 	movups %xmm0,0x1010(%rax)
+    12c4:	f3 0f 6f 86 20 10 00 	movdqu 0x1020(%rsi),%xmm0
+    12cb:	00 
+    12cc:	0f 11 80 20 10 00 00 	movups %xmm0,0x1020(%rax)
+    12d3:	f3 0f 6f 86 30 10 00 	movdqu 0x1030(%rsi),%xmm0
+    12da:	00 
+    12db:	0f 11 80 30 10 00 00 	movups %xmm0,0x1030(%rax)
+  while (i < 5000000){
+    12e2:	0f 85 6f ff ff ff    	jne    1257 <Scheduler+0x47>
+
+  }
+
+  //printf("(()))))\n");
+
+}
+    12e8:	48 83 c4 08          	add    $0x8,%rsp
+    12ec:	5b                   	pop    %rbx
+    12ed:	5d                   	pop    %rbp
+    12ee:	c3                   	retq   
+    12ef:	90                   	nop
+
+00000000000012f0 <UserThreading_Destory>:
+
+void UserThreading_Destory(UserThreading *_uth){
+  //Thread_Destory(_uth->current_thread);
+  Thread_Destory(_uth->sched_thread);
+}
+    12f0:	f3 c3                	repz retq 
+    12f2:	0f 1f 40 00          	nopl   0x0(%rax)
+    12f6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    12fd:	00 00 00 
+
+0000000000001300 <Yield>:
+
+
+void Yield(UserThreading *_uth){
+
+    //printf("--- Yield --- ThreadVec Size %ld current_thread_num %d \n", thread_Vec.size(), current_thread_num);
+  ContextSwitch2(&_uth->buf->context, &(_uth->sched_thread->context));
+    1300:	48 8b 87 00 01 00 00 	mov    0x100(%rdi),%rax
+    1307:	48 8b 3f             	mov    (%rdi),%rdi
+    130a:	48 8d b0 00 10 00 00 	lea    0x1000(%rax),%rsi
+    1311:	48 81 c7 00 10 00 00 	add    $0x1000,%rdi
+    1318:	e9 b3 00 00 00       	jmpq   13d0 <context_switch2>
+    131d:	0f 1f 00             	nopl   (%rax)
+
+0000000000001320 <ThreadExit>:
+    1320:	48 8b 87 00 01 00 00 	mov    0x100(%rdi),%rax
+    1327:	48 8b 3f             	mov    (%rdi),%rdi
+    132a:	48 8d b0 00 10 00 00 	lea    0x1000(%rax),%rsi
+    1331:	48 81 c7 00 10 00 00 	add    $0x1000,%rdi
+    1338:	e9 93 00 00 00       	jmpq   13d0 <context_switch2>
+    133d:	0f 1f 00             	nopl   (%rax)
+
+0000000000001340 <makeThread>:
+    Yield(_uth);
+    //printf("$$$\n");
+}
+
+
+int makeThread(UserThreading *_uth, void (*fn)()){
+    1340:	55                   	push   %rbp
+    1341:	53                   	push   %rbx
+    1342:	48 89 f5             	mov    %rsi,%rbp
+    1345:	48 89 fb             	mov    %rdi,%rbx
+
+  //Thread* new_thread = new Thread(true);
+  //Thread* new_thread = (Thread *) malloc(sizeof(Thread));
+  Thread* new_thread = (Thread *) aligned_alloc(64,sizeof(Thread));
+    1348:	be 40 10 00 00       	mov    $0x1040,%esi
+    134d:	bf 40 00 00 00       	mov    $0x40,%edi
+int makeThread(UserThreading *_uth, void (*fn)()){
+    1352:	48 83 ec 08          	sub    $0x8,%rsp
+  Thread* new_thread = (Thread *) aligned_alloc(64,sizeof(Thread));
+    1356:	e8 a5 f6 ff ff       	callq  a00 <aligned_alloc@plt>
+  Thread_Init(new_thread, true);
+
+  new_thread->context.rsp = (uint64_t)&new_thread->stack[4096];
+  new_thread->context.rsp -= sizeof(void**);
+    135b:	48 8d 90 f8 0f 00 00 	lea    0xff8(%rax),%rdx
+  *(void**)new_thread->context.rsp = (void*)fn;
+    1362:	48 89 a8 f8 0f 00 00 	mov    %rbp,0xff8(%rax)
+      _thread->context.mxcsr = 0; //-1;
+    1369:	48 c7 80 38 10 00 00 	movq   $0x0,0x1038(%rax)
+    1370:	00 00 00 00 
+  //_uth->current_thread  = new_thread; 
+
+  _uth->buf = new_thread; 
+    1374:	48 89 03             	mov    %rax,(%rbx)
+  new_thread->context.rsp -= sizeof(void**);
+    1377:	48 89 90 00 10 00 00 	mov    %rdx,0x1000(%rax)
+
+
+}
+    137e:	48 83 c4 08          	add    $0x8,%rsp
+    1382:	5b                   	pop    %rbx
+    1383:	5d                   	pop    %rbp
+    1384:	c3                   	retq   
+    1385:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    138c:	00 00 00 
+    138f:	90                   	nop
+
+0000000000001390 <context_switch>:
+.text
+.globl context_switch
+.align 16
+context_switch:
+   
+    movq    %rsp, (%rdi)
+    1390:	48 89 27             	mov    %rsp,(%rdi)
+    movq    %r15, 8(%rdi)
+    1393:	4c 89 7f 08          	mov    %r15,0x8(%rdi)
+    movq    %r14, 16(%rdi)
+    1397:	4c 89 77 10          	mov    %r14,0x10(%rdi)
+    movq    %r13, 24(%rdi)
+    139b:	4c 89 6f 18          	mov    %r13,0x18(%rdi)
+    movq    %r12, 32(%rdi)
+    139f:	4c 89 67 20          	mov    %r12,0x20(%rdi)
+    movq    %rbx, 40(%rdi)
+    13a3:	48 89 5f 28          	mov    %rbx,0x28(%rdi)
+    movq    %rbp, 48(%rdi)
+    13a7:	48 89 6f 30          	mov    %rbp,0x30(%rdi)
+    # stmxcsr 0x38(%rdi)
+    # fnstcw  0x3C(%rdi)
+
+    movq    (%rsi), %rsp
+    13ab:	48 8b 26             	mov    (%rsi),%rsp
+    movq    8(%rsi), %r15
+    13ae:	4c 8b 7e 08          	mov    0x8(%rsi),%r15
+    movq    16(%rsi), %r14
+    13b2:	4c 8b 76 10          	mov    0x10(%rsi),%r14
+    movq    24(%rsi), %r13
+    13b6:	4c 8b 6e 18          	mov    0x18(%rsi),%r13
+    movq    32(%rsi), %r12
+    13ba:	4c 8b 66 20          	mov    0x20(%rsi),%r12
+    movq    40(%rsi), %rbx
+    13be:	48 8b 5e 28          	mov    0x28(%rsi),%rbx
+    movq    48(%rsi), %rbp
+    13c2:	48 8b 6e 30          	mov    0x30(%rsi),%rbp
+    # ldmxcsr 0x38(%rsi)
+    # fldcw   0x3C(%rsi)
+    
+    #mfence
+  retq
+    13c6:	c3                   	retq   
+    13c7:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+    13ce:	00 00 
+
+00000000000013d0 <context_switch2>:
+.text
+.globl context_switch2
+.align 16
+context_switch2:
+   
+    movq    %rsp, (%rdi)
+    13d0:	48 89 27             	mov    %rsp,(%rdi)
+    movq    %r15, 8(%rdi)
+    13d3:	4c 89 7f 08          	mov    %r15,0x8(%rdi)
+    movq    %r14, 16(%rdi)
+    13d7:	4c 89 77 10          	mov    %r14,0x10(%rdi)
+    movq    %r13, 24(%rdi)
+    13db:	4c 89 6f 18          	mov    %r13,0x18(%rdi)
+    movq    %r12, 32(%rdi)
+    13df:	4c 89 67 20          	mov    %r12,0x20(%rdi)
+    movq    %rbx, 40(%rdi)
+    13e3:	48 89 5f 28          	mov    %rbx,0x28(%rdi)
+    movq    %rbp, 48(%rdi)
+    13e7:	48 89 6f 30          	mov    %rbp,0x30(%rdi)
+
+    movq    56(%rdi), %r15
+    13eb:	4c 8b 7f 38          	mov    0x38(%rdi),%r15
+    xor     $1, %r15
+    13ef:	49 83 f7 01          	xor    $0x1,%r15
+    #not     %r15
+    #movq    $2, %r15
+    movq    %r15, 56(%rdi)
+    13f3:	4c 89 7f 38          	mov    %r15,0x38(%rdi)
+    #movq    %r15, 56(%rdi)
+
+    # stmxcsr 0x38(%rdi)
+    # fnstcw  0x3C(%rdi)
+
+    movq    (%rsi), %rsp
+    13f7:	48 8b 26             	mov    (%rsi),%rsp
+    movq    8(%rsi), %r15
+    13fa:	4c 8b 7e 08          	mov    0x8(%rsi),%r15
+    movq    16(%rsi), %r14
+    13fe:	4c 8b 76 10          	mov    0x10(%rsi),%r14
+    movq    24(%rsi), %r13
+    1402:	4c 8b 6e 18          	mov    0x18(%rsi),%r13
+    movq    32(%rsi), %r12
+    1406:	4c 8b 66 20          	mov    0x20(%rsi),%r12
+    movq    40(%rsi), %rbx
+    140a:	48 8b 5e 28          	mov    0x28(%rsi),%rbx
+    movq    48(%rsi), %rbp
+    140e:	48 8b 6e 30          	mov    0x30(%rsi),%rbp
+    # ldmxcsr 0x38(%rsi)
+    # fldcw   0x3C(%rsi)
+    
+    #mfence
+  retq
+    1412:	c3                   	retq   
+    1413:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    141a:	00 00 00 
+    141d:	0f 1f 00             	nopl   (%rax)
+
+0000000000001420 <__libc_csu_init>:
+    1420:	41 57                	push   %r15
+    1422:	41 56                	push   %r14
+    1424:	49 89 d7             	mov    %rdx,%r15
+    1427:	41 55                	push   %r13
+    1429:	41 54                	push   %r12
+    142b:	4c 8d 25 0e 09 20 00 	lea    0x20090e(%rip),%r12        # 201d40 <__frame_dummy_init_array_entry>
+    1432:	55                   	push   %rbp
+    1433:	48 8d 2d 0e 09 20 00 	lea    0x20090e(%rip),%rbp        # 201d48 <__init_array_end>
+    143a:	53                   	push   %rbx
+    143b:	41 89 fd             	mov    %edi,%r13d
+    143e:	49 89 f6             	mov    %rsi,%r14
+    1441:	4c 29 e5             	sub    %r12,%rbp
+    1444:	48 83 ec 08          	sub    $0x8,%rsp
+    1448:	48 c1 fd 03          	sar    $0x3,%rbp
+    144c:	e8 c7 f4 ff ff       	callq  918 <_init>
+    1451:	48 85 ed             	test   %rbp,%rbp
+    1454:	74 20                	je     1476 <__libc_csu_init+0x56>
+    1456:	31 db                	xor    %ebx,%ebx
+    1458:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+    145f:	00 
+    1460:	4c 89 fa             	mov    %r15,%rdx
+    1463:	4c 89 f6             	mov    %r14,%rsi
+    1466:	44 89 ef             	mov    %r13d,%edi
+    1469:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+    146d:	48 83 c3 01          	add    $0x1,%rbx
+    1471:	48 39 dd             	cmp    %rbx,%rbp
+    1474:	75 ea                	jne    1460 <__libc_csu_init+0x40>
+    1476:	48 83 c4 08          	add    $0x8,%rsp
+    147a:	5b                   	pop    %rbx
+    147b:	5d                   	pop    %rbp
+    147c:	41 5c                	pop    %r12
+    147e:	41 5d                	pop    %r13
+    1480:	41 5e                	pop    %r14
+    1482:	41 5f                	pop    %r15
+    1484:	c3                   	retq   
+    1485:	90                   	nop
+    1486:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+    148d:	00 00 00 
+
+0000000000001490 <__libc_csu_fini>:
+    1490:	f3 c3                	repz retq 
+
+Disassembly of section .fini:
+
+0000000000001494 <_fini>:
+    1494:	48 83 ec 08          	sub    $0x8,%rsp
+    1498:	48 83 c4 08          	add    $0x8,%rsp
+    149c:	c3                   	retq   

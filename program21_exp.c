@@ -2,7 +2,7 @@
 #include <sched.h>
 #include <x86intrin.h>
 
-#include "ufiber20.h"
+#include "ufiber21.h"
 
 
 pthread_barrier_t barrier;
@@ -86,7 +86,7 @@ void pfc(){
         //asm volatile ("":::"memory");
 
 
-        //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
+        printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
         
         //changeOSThread4();
         //UserThreadingVec[threadId].ThreadExit();
@@ -99,17 +99,17 @@ void pfc(){
     // printf("local_var2: %lld\n",local_var2); 
     
     //allSchedulersExit();
-    UserThreadingVec[(threadId + 1) % 2].buf->context.mxcsr = -2;
+    UserThreadingVec[(threadId + 1) % 2].current_thread->context.mxcsr = -2;
     UserThreadingVec[(threadId + 1) % 2].sp_exit_check = true;
 
 
-    UserThreadingVec[threadId].buf->context.mxcsr = -2;
+    UserThreadingVec[threadId].current_thread->context.mxcsr = -2;
     UserThreadingVec[threadId].sp_exit_check = true;
 
-    printf("I am done %d\n", threadId);
+    //printf("I am done %d\n", threadId);
 
     ThreadExit(&UserThreadingVec[threadId]);
-    printf("*****\n");
+    //printf("*****\n");
 }
 
 
@@ -142,7 +142,7 @@ void *mpthread1(void *arg){
 
     thread1_endtime = __rdtsc();
 
-    printf("globalVariable: %lld\n",globalVariable);  
+    //printf("globalVariable: %lld\n",globalVariable);  
 
     //UserThreading_Destory(&UserThreadingVec[threadId]);
 
@@ -169,7 +169,7 @@ void *mpthread2(void *arg){
     OSThreadAvailable[threadId] = false;
 
     thread2_endtime = __rdtsc();
-    printf("globalVariable: %lld\n",globalVariable);  
+    //printf("globalVariable: %lld\n",globalVariable);  
 
     //UserThreading_Destory(&UserThreadingVec[threadId]);
 

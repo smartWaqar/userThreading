@@ -195,12 +195,17 @@ void lock_init(lock_t *lock) {
 void acquire(lock_t *lock) {
 	//int myturn = FAA(&lock->ticket);
 	int myturn = __sync_fetch_and_add(&lock->ticket, 1, __ATOMIC_SEQ_CST);
-	while (lock->turn != myturn); // spin
+	while (lock->turn != myturn) {
+		asm volatile("rep nop");
+	}
+	; // spin
 }
 
 void release(lock_t *lock) {
 	lock->turn += 1;
 }
+
+uint64_t tarray[16];
 
 lock_t myticketLock;
 

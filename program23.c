@@ -2,7 +2,7 @@
 #include <sched.h>
 #include <x86intrin.h>
 
-#include "ufiber20.h"
+#include "ufiber23.h"
 
 
 pthread_barrier_t barrier;
@@ -14,6 +14,10 @@ bool OSThreadAvailable[2];
 static _Thread_local int threadId;
 
 UserThreading userTh;
+
+
+// jmp_buf buf01;
+// jmp_buf buf02;  
 
 
 char buf[128] = {0};
@@ -86,11 +90,18 @@ void pfc(){
         //asm volatile ("":::"memory");
 
 
-        //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
+       //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
         
         //changeOSThread4();
         //UserThreadingVec[threadId].ThreadExit();
+      // int k = setjmp(buf01);
+      // printf("setjmp buf01\n");
+
+      // if (k == 0)
       ThreadExit(&UserThreadingVec[threadId]);
+      //label1:
+        //local_var++;
+      
     }
     printf("C Exiting\n");
 

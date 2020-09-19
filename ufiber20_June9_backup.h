@@ -29,8 +29,8 @@ typedef struct {
   uint64_t r12;
   uint64_t rbx;
   uint64_t rbp;
-  volatile uint32_t mxcsr;
-  //volatile uint64_t mxcsr;
+  //volatile uint32_t mxcsr;
+  volatile uint64_t mxcsr;
   //uint32_t x87;
 } Context;
 
@@ -58,9 +58,8 @@ typedef struct {
     // Context buf  __attribute__( ( aligned ( 64 ) ) );
     // Context* buf2 __attribute__( ( aligned ( 64 ) ) );
 
-    //Thread buf  __attribute__( ( aligned ( 64 ) ) );
-    Thread *buf  __attribute__( ( aligned ( 64 ) ) );
-    Thread *buf2 __attribute__( ( aligned ( 64 ) ) );
+    Thread buf  __attribute__( ( aligned ( 64 ) ) );
+    Thread* buf2 __attribute__( ( aligned ( 64 ) ) );
 
 
     Thread* volatile current_thread __attribute__( ( aligned ( 64 ) ) );

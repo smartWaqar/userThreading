@@ -1,5 +1,9 @@
 #!/bin/sh
 
+
+# Quads3 With all experiments in both without RepNop and with RepNop
+
+
 #Quads Machine Experiment For Generating bar chart graphs
 
 
@@ -79,7 +83,7 @@ e1var2=`cat log.txt | ./mean`
 for i in 1 2 3 4 5 6 7 8 9 10; do ./program20_exp 0 14;  done | grep cycles > log.txt
 e1var3=`cat log.txt | ./mean`
 
-echo "fiber_RN" $e1var1 $e1var2 $e1var3
+echo "fiberRN" $e1var1 $e1var2 $e1var3
 
 # echo "---------------------------------------"
 # echo "delegation_exp.c"
@@ -96,7 +100,7 @@ e1var2=`cat log.txt | ./mean`
 for i in 1 2 3 4 5 6 7 8 9 10; do ./delg 0 14;  done | grep cycles > log.txt
 e1var3=`cat log.txt | ./mean` 
 
-echo "delegation_RN" $e1var1 $e1var2 $e1var3
+echo "delegationRN" $e1var1 $e1var2 $e1var3
 
 
 # echo "----------------------------------------"
@@ -114,4 +118,4 @@ e1var2=`cat log.txt | ./mean`
 for i in 1 2 3 4 5 6 7 8 9 10; do ./locks_exp 0 14;  done | grep cycles > log.txt
 e1var3=`cat log.txt | ./mean`
 
-echo "locks_RN" $e1var1 $e1var2 $e1var3
+echo "locksRN" $e1var1 $e1var2 $e1var3

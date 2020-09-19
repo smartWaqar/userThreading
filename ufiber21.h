@@ -29,8 +29,8 @@ typedef struct {
   uint64_t r12;
   uint64_t rbx;
   uint64_t rbp;
-  volatile uint32_t mxcsr;
-  //volatile uint64_t mxcsr;
+  //volatile uint32_t mxcsr;
+  volatile uint64_t mxcsr;
   //uint32_t x87;
 } Context;
 

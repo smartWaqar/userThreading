@@ -2,7 +2,7 @@
 #include <sched.h>
 #include <x86intrin.h>
 
-#include "ufiber20.h"
+#include "ufiber22.h"
 
 
 pthread_barrier_t barrier;

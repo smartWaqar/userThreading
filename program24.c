@@ -2,7 +2,7 @@
 #include <sched.h>
 #include <x86intrin.h>
 
-#include "ufiber20.h"
+#include "ufiber24.h"
 
 
 pthread_barrier_t barrier;
@@ -14,6 +14,36 @@ bool OSThreadAvailable[2];
 static _Thread_local int threadId;
 
 UserThreading userTh;
+
+
+
+// __attribute__((always_inline))
+// //__attribute__ ((noinline))
+// void Yield(UserThreading *_uth){
+
+//   //printf("--- Yield --- ThreadVec Size %ld current_thread_num %d \n", thread_Vec.size(), current_thread_num);
+//   //printf("Yield\n");
+
+
+//   Context *s = &(_uth->sched_thread->context);
+//   Context *t = &(_uth->buf->context);
+
+
+//   __asm__ __volatile__(
+//     "movq    %%rsp, (%[t]) \n\t"
+//     "lea target2%=(%%rip), %%rcx \n\t"
+//     "movq %%rcx, 8(%[t]) \n\t"
+//     "movq    (%[s]), %%rsp \n\t"
+//     "movq 8(%[s]), %%rcx \n\t"
+//     "jmp *%%rcx \n\t"
+//     "target2%=: "
+//     : //[b] "=r" (bb)
+//     : [t] "a" (t), [s] "b" (s)
+//     : /*"%rax", "%rbx", */"%rcx", "%rdx", "%r8", "%r9", "%r10", "%r11", "%r12", "%r13", "%r14", "%r15", "%rbp", "%rdi", "%rsi"  //Clobber all registers which are not saved
+//   );
+
+// }
+
 
 
 char buf[128] = {0};
@@ -46,15 +76,9 @@ void pfc(){
 
     // Special code
 
-    //UserThreadingVec[0].foreign_thread_ptr = &UserThreadingVec[1].current_thread;
-    //UserThreadingVec[1].foreign_thread_ptr = &UserThreadingVec[0].current_thread;
+    //UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
 
-    UserThreadingVec[1].current_thread = UserThreadingVec[0].current_thread;
 
-    //
-    // UserThreadingVec[1].buf2 = &UserThreadingVec[0].buf; 
-    // UserThreadingVec[0].buf2 = &UserThreadingVec[1].buf; 
-    //
     UserThreadingVec[1].buf2 = UserThreadingVec[0].buf; 
     UserThreadingVec[0].buf2 = UserThreadingVec[1].buf;
 
@@ -86,11 +110,18 @@ void pfc(){
         //asm volatile ("":::"memory");
 
 
-        //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
+       //printf("OST %d Hello C%d on CPU %d --------------- \n",threadId , i, sched_getcpu());
         
         //changeOSThread4();
         //UserThreadingVec[threadId].ThreadExit();
-      ThreadExit(&UserThreadingVec[threadId]);
+      // int k = setjmp(buf01);
+      // printf("setjmp buf01\n");
+
+      // if (k == 0)
+      Yield(&UserThreadingVec[threadId]);
+      //label1:
+        //local_var++;
+      
     }
     printf("C Exiting\n");
 
@@ -108,7 +139,7 @@ void pfc(){
 
     printf("I am done %d\n", threadId);
 
-    ThreadExit(&UserThreadingVec[threadId]);
+    Yield(&UserThreadingVec[threadId]);
     printf("*****\n");
 }
 
