@@ -1803,3 +1803,39 @@ Mean:740.4  SD: 69.3097
 
 With printf:
 Mean:651.7  SD: 99.3751
+
+
+####################################################
+
+
+On 10 RepNops:
+
+elseCounter       59038
+uniqueElseCounter 505
+elseCounter       2780477
+uniqueElseCounter 2656174
+
+
+elseCounter       916108
+uniqueElseCounter 851870
+elseCounter       22331
+uniqueElseCounter 4824
+
+
+#################################################
+
+
+Mean:580  SD: 28.9966
+Mean:671.5  SD: 107.271
+
+###############################################33
+
+avx512 bit intrinsics -> google it -> force use 512 bit
+
+mm512_
+
+use stack in context Switch
+
+Use mlc
+
+rust

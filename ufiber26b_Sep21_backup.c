@@ -96,7 +96,7 @@ void Scheduler(UserThreading *_uth){
 
       //__asm__ __volatile__ ( "lfence\n\t");
       if ( t->mxcsr == flagg){
-        fiberRunCounter++;
+        //fiberRunCounter++;
       //if ( _uth->buf->context.mxcsr == counter){
             //counter++;
 
@@ -223,8 +223,8 @@ void Scheduler(UserThreading *_uth){
 
   }
 
-  printf("Thread %d elseCounter       %d\n", mythreadId,  elseCounter);
-  printf("Thread %d uniqueElseCounter %d\n",  mythreadId, uniqueElseCounter);
+  //printf("elseCounter       %d\n", elseCounter);
+  //printf("uniqueElseCounter %d\n",  uniqueElseCounter);
 
 
   //printf("whileCounter %lld\n", whileCounter);
@@ -588,8 +588,8 @@ void pfc(){
 
 
         // Case: 2 Global
+        //printf("ThreadId %d\n ", threadId);
         if (threadId == 0)
-        //if ( i % 2 == 0)
           global_var1++;
         else
           global_var2++;
